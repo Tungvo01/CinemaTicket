@@ -198,10 +198,23 @@
     <Compile Include="Migrations\202303160257527_Tao lien ket 1 n voi CinemaShowdayShowTimeMovie vs Show.designer.cs">
       <DependentUpon>202303160257527_Tao lien ket 1 n voi CinemaShowdayShowTimeMovie vs Show.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303160850041_Tao Lien ket 1 n Movie voi News.cs" />
+    <Compile Include="Migrations\202303160850041_Tao Lien ket 1 n Movie voi News.designer.cs">
+      <DependentUpon>202303160850041_Tao Lien ket 1 n Movie voi News.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303160901135_huy lien ket tbale News.cs" />
+    <Compile Include="Migrations\202303160901135_huy lien ket tbale News.designer.cs">
+      <DependentUpon>202303160901135_huy lien ket tbale News.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303160908051_Tao Lien ket 1 n giua Movie voi News.cs" />
+    <Compile Include="Migrations\202303160908051_Tao Lien ket 1 n giua Movie voi News.designer.cs">
+      <DependentUpon>202303160908051_Tao Lien ket 1 n giua Movie voi News.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CinemaModels\Cinema.cs" />
     <Compile Include="Models\CinemaModels\Movie.cs" />
+    <Compile Include="Models\CinemaModels\News.cs" />
     <Compile Include="Models\CinemaModels\Reservation.cs" />
     <Compile Include="Models\CinemaModels\Seat.cs" />
     <Compile Include="Models\CinemaModels\Show.cs" />
@@ -303,6 +316,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303160257527_Tao lien ket 1 n voi CinemaShowdayShowTimeMovie vs Show.resx">
       <DependentUpon>202303160257527_Tao lien ket 1 n voi CinemaShowdayShowTimeMovie vs Show.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303160850041_Tao Lien ket 1 n Movie voi News.resx">
+      <DependentUpon>202303160850041_Tao Lien ket 1 n Movie voi News.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303160901135_huy lien ket tbale News.resx">
+      <DependentUpon>202303160901135_huy lien ket tbale News.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303160908051_Tao Lien ket 1 n giua Movie voi News.resx">
+      <DependentUpon>202303160908051_Tao Lien ket 1 n giua Movie voi News.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
