@@ -23,18 +23,15 @@ namespace CinemaTicket.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Cinema> Cinemas { get; set; }
-        public DbSet<ShowDay> ShowDays{ get; set; }
+        public DbSet<ShowDay> ShowDays { get; set; }
         public DbSet<ShowTime> ShowTimes { get; set; }
-
         public DbSet<Movie> Movies { get; set; }
-
         public DbSet<News> News { get; set; }
-
         public DbSet<Seat> Seats { get; set; }
-
         public DbSet<Show> Shows { get; set; }
-
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<MovieDetail> MovieDetails { get; set; }
+        public DbSet<Celebrity> Celebrities { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -53,6 +50,16 @@ namespace CinemaTicket.Models
                 .WithMany()
                 .WillCascadeOnDelete(false);
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Movie>()
+            .HasMany(s => s.MovieDetails)
+            .WithRequired(e => e.Movie)
+            .HasForeignKey(e => e.MovieId);
+
+            modelBuilder.Entity<Celebrity>()
+                .HasMany(c => c.MovieDetails)
+                .WithRequired(e => e.Celebrity)
+                .HasForeignKey(e => e.CelebrityId);
         }
     }
 }

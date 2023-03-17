@@ -225,10 +225,16 @@
     <Compile Include="Migrations\202303170244038_cap nhat time.designer.cs">
       <DependentUpon>202303170244038_cap nhat time.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303170855146_them table celebrity va rang buoc voi movie.cs" />
+    <Compile Include="Migrations\202303170855146_them table celebrity va rang buoc voi movie.designer.cs">
+      <DependentUpon>202303170855146_them table celebrity va rang buoc voi movie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CinemaModels\Celebrity.cs" />
     <Compile Include="Models\CinemaModels\Cinema.cs" />
     <Compile Include="Models\CinemaModels\Movie.cs" />
+    <Compile Include="Models\CinemaModels\MovieDetail.cs" />
     <Compile Include="Models\CinemaModels\News.cs" />
     <Compile Include="Models\CinemaModels\Reservation.cs" />
     <Compile Include="Models\CinemaModels\Seat.cs" />
@@ -389,6 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303170244038_cap nhat time.resx">
       <DependentUpon>202303170244038_cap nhat time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303170855146_them table celebrity va rang buoc voi movie.resx">
+      <DependentUpon>202303170855146_them table celebrity va rang buoc voi movie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
