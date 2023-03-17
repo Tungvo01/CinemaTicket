@@ -11,6 +11,7 @@ namespace CinemaTicket.Models.CinemaModels
         [Key]
         public int ShowTimeId { get; set; }
 
+        [Required(ErrorMessage = "Trường này không được để trống!")]
         public string Time { get; set; }
 
         //relationships

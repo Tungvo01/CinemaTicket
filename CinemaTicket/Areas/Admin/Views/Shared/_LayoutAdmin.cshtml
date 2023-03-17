@@ -17,23 +17,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("App", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Admin", "Index", "Cinemas", new { area = "Admin" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Movie", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Cinema", "About", "Home")</li>
-                    <li>@Html.ActionLink("ShowDay", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("ShowTime", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Movie", "Index", "Movies")</li>
+                    <li>@Html.ActionLink("Cinema", "Index", "Cinemas")</li>
+                    <li>@Html.ActionLink("ShowDay", "Index", "ShowDays")</li>
+                    <li>@Html.ActionLink("ShowTime", "Index", "ShowTimes")</li>
                     <li>@Html.ActionLink("Show", "Index", "Shows")</li>
-                    <li>@Html.ActionLink("Seat", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("News", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Reservation", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Seat", "Index", "Seats")</li>
+                    <li>@Html.ActionLink("News", "Index", "News")</li>
+                    <li>@Html.ActionLink("Reservation", "Index", "Reservations")</li>
 
 
                 </ul>
 
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartialAdmin")
             </div>
         </div>
     </div>

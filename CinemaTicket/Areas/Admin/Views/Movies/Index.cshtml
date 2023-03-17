@@ -2,12 +2,14 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Index</h2>
 
-
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -22,7 +24,9 @@
             @Html.DisplayFor(modelItem => item.MovieName)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", "Movies", new { id=item.MovieId }, null) 
+            @Html.ActionLink("Edit", "Edit", new { id=item.MovieId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MovieId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MovieId })
         </td>
     </tr>
 }

@@ -1,0 +1,43 @@
+﻿@model CinemaTicket.Models.CinemaModels.Reservation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reservation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seat.SeatId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seat.SeatId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Show.ShowId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Show.ShowId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReservationId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

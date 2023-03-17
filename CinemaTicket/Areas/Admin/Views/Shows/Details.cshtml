@@ -1,0 +1,51 @@
+﻿@model CinemaTicket.Models.CinemaModels.Show
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Show</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cinema.CinemaName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cinema.CinemaName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.MovieName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Movie.MovieName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowDay.ShowDayId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowDay.ShowDayId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowTime.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowTime.Time)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ShowId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

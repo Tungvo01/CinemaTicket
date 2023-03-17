@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CinemaTicket.Models.CinemaModels.Show>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cinema.CinemaName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Movie.MovieName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowDay.ShowDayId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowTime.Time)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cinema.CinemaName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Movie.MovieName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowDay.Day)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowTime.Time)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ShowId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ShowId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ShowId })
+        </td>
+    </tr>
+}
+
+</table>

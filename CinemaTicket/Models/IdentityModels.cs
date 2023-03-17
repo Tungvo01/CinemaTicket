@@ -22,6 +22,20 @@ namespace CinemaTicket.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Cinema> Cinemas { get; set; }
+        public DbSet<ShowDay> ShowDays{ get; set; }
+        public DbSet<ShowTime> ShowTimes { get; set; }
+
+        public DbSet<Movie> Movies { get; set; }
+
+        public DbSet<News> News { get; set; }
+
+        public DbSet<Seat> Seats { get; set; }
+
+        public DbSet<Show> Shows { get; set; }
+
+        public DbSet<Reservation> Reservations { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
