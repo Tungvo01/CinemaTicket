@@ -17,6 +17,7 @@ namespace CinemaTicket.Models.CinemaModels
         public string ImageURL { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
         public int Vote { get; set; }
 
         //relationships
