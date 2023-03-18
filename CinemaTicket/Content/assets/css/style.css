@@ -36,6 +36,11 @@ body {
     font-weight: 400;
     position: relative;
 }
+.btnSubmit {
+    background: #eb315a;
+    border: 1px solid #eb315a;
+    color: #fff;
+}
 
 /*----------------------------
 ---------- RESET CSS ---------
@@ -120,7 +125,12 @@ button{
 textarea {
 	height: 160px;
 }
-input[type="text"],
+.btnSubmit {
+    background: #eb315a !important;
+    border: 1px solid #eb315a !important;
+    color: #fff !important;
+}
+/*input[type="text"],
 input[type="submit"],
 button[type="submit"],
 input[type="email"],
@@ -129,18 +139,21 @@ input[type="tel"],
 input[type="search"],
 input[type="password"],
 input[type="number"],
-textarea {
-    background: #24262d;
-    width: 100%;
+textarea {*/
+    /*background: #eb315a;
+    border: 1px solid #eb315a;
+    color: #fff;
+    background: #eb315a;
+   
     padding: 8px 15px;
-    border: none;
-}
+    border: none;*/
+/*}
 input[type="submit"],
-button[type="submit"] {
-    width: auto;
+button[type="submit"] {*/
+   /* width: auto;
     color: #666;
-    padding: 4px 15px;
-}
+    padding: 4px 15px;*/
+/*}*/
 textarea:focus {
     outline: none !important;
     box-shadow: none !important;
