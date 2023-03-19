@@ -178,9 +178,12 @@
     <Compile Include="Areas\Admin\Controllers\ShowsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShowTimesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CelebritiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MovieDetailsController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ShowsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -402,6 +405,15 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\Shared\_HeroAreaPartial.cshtml" />
+    <Content Include="Views\Movies\get3Slide.cshtml" />
+    <Content Include="Views\Shared\get3Slide.cshtml" />
+    <Content Include="Views\MovieDetails\de.cshtml" />
+    <Content Include="Views\Shared\_PortfolioPartial.cshtml" />
+    <Content Include="Views\Celebrities\Index.cshtml" />
+    <Content Include="Views\Celebrities\Details.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

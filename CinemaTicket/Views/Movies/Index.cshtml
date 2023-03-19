@@ -5,26 +5,153 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MovieName)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MovieName)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.MovieId }) 
-        </td>
-    </tr>
+@{
+    Html.RenderPartial("_HeaderPartial");
 }
+<!-- breadcrumb area start -->
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-area-content">
+                    <h1>Movies Page</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- breadcrumb area end -->
+<section class="portfolio-area pt-60">
+    <div class="container">
+        <div class="row flexbox-center">
+            <div class="col-lg-6 text-center text-lg-left">
+                <div class="section-title">
+                    <h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="portfolio-menu">
+                    <ul>
+                        <li data-filter="*" class="active">Latest</li>
+                        <li data-filter=".soon">Comming Soon</li>
+                        <li data-filter=".top">Top Rated</li>
+                        <li data-filter=".released">Recently Released</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row portfolio-item">
+                    @foreach (var movie in Model)
+                    {
+                        <div class="col-md-4 col-sm-6 soon released">
+                            <div class="single-portfolio">
+                                <div class="single-portfolio-img">
+                                    <img src="~/Content/assets/img/@movie.ImageURL" alt="portfolio" />
+                                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                                        <i class="icofont icofont-ui-play"></i>
+                                    </a>
+                                </div>
+                                <div class="portfolio-content">
+                                    <h2>@movie.MovieName</h2>
+                                    <div class="review">
+                                        <div class="author-review">
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        </div>
+                                        <h4>@movie.Vote voters</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
 
-</table>
+                </div>
+            </div>
+            <div class="col-lg-3 text-center text-lg-left">
+                <div class="portfolio-sidebar">
+                    <img src="~/Content/assets/img/sidebar/sidebar1.png" alt="sidebar" />
+                    <img src="~/Content/assets/img/sidebar/sidebar2.png" alt="sidebar" />
+                    <img src="~/Content/assets/img/sidebar/sidebar3.png" alt="sidebar" />
+                    <img src="~/Content/assets/img/sidebar/sidebar4.png" alt="sidebar" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- portfolio section end -->
+<!-- video section start -->
+<section class="video ptb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title pb-20">
+                    <h1><i class="icofont icofont-film"></i> Trailers & Videos</h1>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="video-slider mt-20">
+                    <div class="video-area">
+                        
+                        <img src="~/Content/assets/img/video/video2.png" alt="video" />
+                        <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                            <i class="icofont icofont-ui-play"></i>
+                        </a>
+                    </div>
+                    <div class="video-area">
+                        <img src="~/Content/assets/img/video/video3.png" alt="video" />
+                        <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                            <i class="icofont icofont-ui-play"></i>
+                        </a>
+                    </div>
+                    <div class="video-area">
+                        <img src="~/Content/assets/img/video/video4.png" alt="video" />
+                        <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                            <i class="icofont icofont-ui-play"></i>
+                        </a>
+                    </div>
+                    <div class="video-area">
+                        <img src="~/Content/assets/img/video/video5.png" alt="video" />
+                        <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                            <i class="icofont icofont-ui-play"></i>
+                        </a>
+                    </div>
+                    <div class="video-area">
+                        <img src="~/Content/assets/img/video/video2.png" alt="video" />
+                        <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                            <i class="icofont icofont-ui-play"></i>
+                        </a>
+                    </div>
+                    <div class="video-area">
+                        <img src="~/Content/assets/img/video/video3.png" alt="video" />
+                        <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                            <i class="icofont icofont-ui-play"></i>
+                        </a>
+                    </div>
+                    <div class="video-area">
+                        <img src="~/Content/assets/img/video/video4.png" alt="video" />
+                        <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                            <i class="icofont icofont-ui-play"></i>
+                        </a>
+                    </div>
+                    <div class="video-area">
+                        <img src="~/Content/assets/img/video/video5.png" alt="video" />
+                        <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                            <i class="icofont icofont-ui-play"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- video section end -->
+
+@{
+    Html.RenderPartial("_FooterPartial");
+}

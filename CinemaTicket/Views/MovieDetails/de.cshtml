@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CinemaTicket.Models.CinemaModels.MovieDetail>
+
+<div class="container">
+    <div class="hero-area-slider">
+
+        @foreach (var movie in Model)
+        {
+            <div class="row hero-area-slide">
+                <div class="col-lg-6 col-md-5">
+                    <div class="hero-area-content">
+                        <img src="~/Content/assets/img/@movie.Movie.ImageURL" alt="about" />
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-7">
+                    <div class="hero-area-content pr-50">
+                        <h2>@movie.Movie.MovieName</h2>
+                        <div class="review">
+                            <div class="author-review">
+                                <i class="icofont icofont-star"></i>
+                                <i class="icofont icofont-star"></i>
+                                <i class="icofont icofont-star"></i>
+                                <i class="icofont icofont-star"></i>
+                                <i class="icofont icofont-star"></i>
+                            </div>
+                            <h4>@movie.Movie.Vote votes</h4>
+                        </div>
+                        <p>@movie.Movie.Description</p>
+                        <h3>Cast:</h3>
+                        <div class="slide-cast">
+                            @*<div class="single-slide-cast">
+                                    <img src="~/Content/assets/img/cast/cast1.png" alt="about" />
+                                </div>*@
+                            @foreach (var moviedetail in Model.Where(n => n.MovieId == @movie.Movie.MovieId))
+                            {
+                                <div class="single-slide-cast">
+                                    <img src="~/Content/assets/img/cast/@moviedetail.Celebrity.UrlAvatar" alt="about" />
+                                </div>
+
+                            }
+
+                        </div>
+                        <div class="slide-trailor">
+                            <h3>Watch Trailer</h3>
+                            <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CinemaTicket.Models.CinemaModels.Movie>
+
+<section class="portfolio-area pt-60">
+    <div class="container">
+        <div class="row flexbox-center">
+            <div class="col-lg-6 text-center text-lg-left">
+                <div class="section-title">
+                    <h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="portfolio-menu">
+                    <ul>
+                        <li data-filter="*" class="active">Latest</li>
+                        <li data-filter=".soon">Comming Soon</li>
+                        <li data-filter=".top">Top Rated</li>
+                        <li data-filter=".released">Recently Released</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row portfolio-item">
+                    @foreach (var movie in Model)
+                    {
+                        <div class="col-md-4 col-sm-6 soon released">
+                            <div class="single-portfolio">
+                                <div class="single-portfolio-img">
+                                    <img src="~/Content/assets/img/@movie.ImageURL" alt="portfolio" />
+                                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                                        <i class="icofont icofont-ui-play"></i>
+                                    </a>
+                                </div>
+                                <div class="portfolio-content">
+                                    <h2>@movie.MovieName</h2>
+                                    <div class="review">
+                                        <div class="author-review">
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        </div>
+                                        <h4>@movie.Vote voters</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                   
+                </div>
+            </div>
+            <div class="col-lg-3 text-center text-lg-left">
+                <div class="portfolio-sidebar">
+                    <img src="~/Content/assets/img/sidebar/sidebar1.png" alt="sidebar" />
+                    <img src="~/Content/assets/img/sidebar/sidebar2.png" alt="sidebar" />
+                    <img src="~/Content/assets/img/sidebar/sidebar3.png" alt="sidebar" />
+                    <img src="~/Content/assets/img/sidebar/sidebar4.png" alt="sidebar" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- portfolio section end -->

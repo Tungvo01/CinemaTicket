@@ -16,7 +16,7 @@ namespace CinemaTicket.Controllers
         }
         public ActionResult Index()
         {
-            return View(dbContext.Movies.ToList());
+            return View(dbContext.MovieDetails.ToList());
         }
 
 

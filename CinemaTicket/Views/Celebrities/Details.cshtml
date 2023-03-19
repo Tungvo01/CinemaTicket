@@ -1,0 +1,158 @@
+﻿@model CinemaTicket.Models.CinemaModels.Celebrity
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_HeaderPartial");
+}
+
+
+
+<!-- breadcrumb area start -->
+
+
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-area-content">
+                    <h1>Celebrities Page</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- breadcrumb area end -->
+
+
+<!-- transformers area start -->
+<section class="transformers-area">
+    <div class="container">
+        <div class="transformers-box">
+            <div class="row flexbox-center">
+                <div class="col-lg-5 text-lg-left text-center">
+                    <div class="transformers-content">
+                        <img src="~/Content/assets/img/cast/@Model.UrlAvatar" alt="about" />
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="transformers-content mtr-30">
+                        <h2>@Model.Name</h2>
+                        <a href="#" class="theme-btn">Biography</a>
+                        @*<a href="#">Filmography</a>*@
+                        <ul>
+                            <li>
+                                <div class="transformers-left">
+                                    Height:
+                                </div>
+                                <div class="transformers-right">
+                                    @Model.Height
+                                </div>
+                            </li>
+                            <li>
+                                <div class="transformers-left">
+                                    Weight:
+                                </div>
+                                <div class="transformers-right">
+                                    @Model.Weight
+                                </div>
+                            </li>
+                            <li>
+                                <div class="transformers-left">
+                                    Eye Color:
+                                </div>
+                                <div class="transformers-right">
+                                    Black
+                                </div>
+                            </li>
+                            <li>
+                                <div class="transformers-left">
+                                    Hair Color:
+                                </div>
+                                <div class="transformers-right">
+                                    Black
+                                </div>
+                            </li>
+                            <li>
+                                <div class="transformers-left">
+                                    Birthday:
+                                </div>
+                                <div class="transformers-right">
+                                    1985.Jun.20
+                                </div>
+                            </li>
+                            <li>
+                                <div class="transformers-left">
+                                    Language:
+                                </div>
+                                <div class="transformers-right">
+                                    @Model.Language
+                                </div>
+                            </li>
+                            <li>
+                                <div class="transformers-left">
+                                    Hobby:
+                                </div>
+                                <div class="transformers-right">
+                                    Base Ball, Gaming, Exploring, Baook Reading
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- transformers area end -->
+<!-- details area start -->
+<section class="details-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="details-content">
+                    <div class="details-overview">
+                        <h2>Overview</h2>
+                        <p>@Model.Description</p>
+                    </div>
+
+                    <div class="details-thumb">
+                        <div class="details-thumb-prev">
+                            <div class="thumb-icon">
+                                <i class="icofont icofont-simple-left"></i>
+                            </div>
+                            <div class="thumb-text">
+                                <h4><a>@Html.ActionLink("Previous Post", "Details", new { id = Model.CelebrityId - 1 })</a></h4>
+                                <p>Standard Post With Gallery</p>
+                            </div>
+                        </div>
+                        <div class="details-thumb-next">
+                            <div class="thumb-text">
+                                <h4> <a>@Html.ActionLink("Next Post", "Details", new { id = Model.CelebrityId + 1 })</a></h4>
+                                <p>Standard Post With Preview Image</p>
+                            </div>
+                            <div class="thumb-icon">
+                                <i class="icofont icofont-simple-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 text-center text-lg-left">
+                <div class="portfolio-sidebar">
+                    <img src="~/Content/assets/img/sidebar/sidebar1.png" alt="sidebar" />
+                    <img src="~/Content/assets/img/sidebar/sidebar2.png" alt="sidebar" />
+                    <img src="~/Content/assets/img/sidebar/sidebar4.png" alt="sidebar" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- details area end -->
+
+
+@{
+    Html.RenderPartial("_FooterPartial");
+}
+

@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<CinemaTicket.Models.CinemaModels.Celebrity>
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 @{
     Html.RenderPartial("_HeaderPartial");
@@ -101,7 +100,7 @@
                                         Base Ball, Gaming, Exploring, Baook Reading
                                     </div>
                                 </li>
-
+                                
                             </ul>
                         </div>
                     </div>
@@ -119,20 +118,20 @@
                             <h2>Overview</h2>
                             <p>@celebrity.Description</p>
                         </div>
-
+                      
                         <div class="details-thumb">
                             <div class="details-thumb-prev">
                                 <div class="thumb-icon">
                                     <i class="icofont icofont-simple-left"></i>
                                 </div>
                                 <div class="thumb-text">
-                                    <h4><a>@Html.ActionLink("Previous Post", "Details", new { id = celebrity.CelebrityId - 1 })</a></h4>
+                                    <h4><a>@Html.ActionLink("Previous Post", "Details", new { id = celebrity.CelebrityId })</a></h4>
                                     <p>Standard Post With Gallery</p>
                                 </div>
                             </div>
                             <div class="details-thumb-next">
                                 <div class="thumb-text">
-                                    <h4> <a>@Html.ActionLink("Next Post", "Details", new { id = celebrity.CelebrityId + 1})</a></h4>
+                                    <h4> <a>@Html.ActionLink("Next Post", "Details", new { id = celebrity.CelebrityId })</a></h4>
                                     <p>Standard Post With Preview Image</p>
                                 </div>
                                 <div class="thumb-icon">
@@ -154,8 +153,6 @@
     </section><!-- details area end -->
 
 }
-
 @{
     Html.RenderPartial("_HeaderPartial");
 }
-

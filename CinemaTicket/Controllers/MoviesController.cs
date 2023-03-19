@@ -34,10 +34,26 @@ namespace CinemaTicket.Controllers
                 return HttpNotFound();
             }
             return View(movie);
+
+
+
         }
 
-        
+
+        public ActionResult get3Slide()
+        {
+
+            var lastThreeItems = db.MovieDetails.Include(c => c.Movie).Include(c => c.Celebrity)
+                .Take(3)
+                .ToList();
+                
+            return View(lastThreeItems);
+        }
+
        
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
