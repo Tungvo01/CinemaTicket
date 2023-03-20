@@ -13,8 +13,11 @@ namespace CinemaTicket.Controllers
 {
     public class MoviesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private ApplicationDbContext db;
+        public MoviesController()
+        {
+            db = new ApplicationDbContext();
+        }
         // GET: Movies
         public ActionResult Index()
         {
@@ -24,6 +27,13 @@ namespace CinemaTicket.Controllers
         // GET: Movies/Details/5
         public ActionResult Details(int? id)
         {
+            //ViewBag.MovieDetails = db.MovieDetails.Find()
+            ViewBag.Movies = db.Movies.Find(id);//lay dc ten film
+            ViewBag.Shows = db.Shows.ToList();
+              ViewBag.ShowDays = db.ShowDays.ToList();
+            ViewBag.ShowTimes = db.ShowTimes.ToList();
+            ViewBag.Cinemas = db.Cinemas.ToList();// lấy hết celebrities của 3 phim trên
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -33,9 +43,10 @@ namespace CinemaTicket.Controllers
             {
                 return HttpNotFound();
             }
+
+          
+
             return View(movie);
-
-
 
         }
 

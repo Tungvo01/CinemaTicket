@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CinemaTicket.Models.CinemaModels.MovieDetail>
+﻿@model IEnumerable<CinemaTicket.Models.CinemaModels.Movie>
 
 @{
     ViewBag.Title = "Index";
@@ -29,57 +29,8 @@
 
     </table>*@
 
-<!--<div class="login-area" style="color: #000;">
-    <div class="login-box">
-        <a href="#"><i class="icofont icofont-close"></i></a>
-        <h2>LOGIN</h2>
-        <form action="#">
-            <h6>USERNAME OR EMAIL ADDRESS</h6>
-            <input type="text" />
-            <h6>PASSWORD</h6>
-            <input type="text" />
-            <div class="login-remember">
-                <input type="checkbox" />
-                <span>Remember Me</span>
-            </div>
-            <div class="login-signup">
-                <span>SIGNUP</span>
-            </div>
-            <a href="#" class="theme-btn">LOG IN</a>
-
-        </form>
-
-    </div>
-</div>-->
-<!-- signup -->
-<!--<div class="login-area">
-    <div class="login-box">
-        <a href="#"><i class="icofont icofont-close"></i></a>
-        <h2>SIGNUP</h2>
-        <form action="#" style="color: #000;">
-            <h6>FULL NAME</h6>
-            <input type="text" placeholder="Nhập Email" name="email" />
-            <h6>EMAIL ADDRESS</h6>
-            <input type="text" />
-
-            <h6>PASSWORD</h6>
-            <input type="text" />
-            <h6>CONFRM PASS</h6>
-            <input type="text" />-->
-<!-- <div class="login-remember">
-    <input type="checkbox" />
-    <span>Remember Me</span>
-</div> -->
-<!--<div class="login-signup">
-                <span>SIGN IN</span>
-            </div>
-            <a href="#" class="theme-btn">SIGN IN</a>
-
-        </form>
 
 
-    </div>
-</div>-->
 
 @{
     Html.RenderPartial("_HeaderPartial");
@@ -87,318 +38,138 @@
 
 }
 
-<!--<div class="buy-ticket">
-    <div class="container">
-        <div class="buy-ticket-area">
-            <a href="#"><i class="icofont icofont-close"></i></a>
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="buy-ticket-box">
-                        <h4>Buy Tickets</h4>
-                        <h5>Seat</h5>
-                        <h6>Screen</h6>
-                        <div class="ticket-box-table">
-                            <table class="ticket-table-seat">
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                </tr>
-                            </table>
-                            <table class="ticket-table-seat">
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td class="active">1</td>
-                                    <td class="active">1</td>
-                                    <td class="active">1</td>
-                                    <td class="active">1</td>
-                                    <td class="active">1</td>
-                                    <td class="active">1</td>
-                                    <td class="active">1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                </tr>
-                            </table>
-                            <table class="ticket-table-seat">
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="ticket-box-available">
-                            <input type="checkbox" />
-                            <span>Available</span>
-                            <input type="checkbox" checked />
-                            <span>Unavailable</span>
-                            <input type="checkbox" />
-                            <span>Selected</span>
-                        </div>
-                        <a href="#" class="theme-btn">previous</a>
-                        <a href="#" class="theme-btn">Next</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 offset-lg-1">
-                    <div class="buy-ticket-box mtr-30">
-                        <h4>Your Information</h4>
-                        <ul>
-                            <li>
-                                <p>Location</p>
-                                <span>HB Cinema Box Corner</span>
-                            </li>
-                            <li>
-                                <p>TIME</p>
-                                <span>2018.07.09   20:40</span>
-                            </li>
-                            <li>
-                                <p>Movie name</p>
-                                <span>Home Alone</span>
-                            </li>
-                            <li>
-                                <p>Ticket number</p>
-                                <span>2 Adults, 2 Children, 2 Seniors</span>
-                            </li>
-                            <li>
-                                <p>Price</p>
-                                <span>89$</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
-<!-- header section end -->
-<!-- hero area start -->
-@*<section class="hero-area" id="home">
-        <div class="container">
-            <div class="hero-area-slider">
 
-                @foreach (var movie in Model)
-                {
-                    <div class="row hero-area-slide">
-                        <div class="col-lg-6 col-md-5">
-                            <div class="hero-area-content">
-                                <img src="~/Content/assets/img/slide2.png" alt="about" />
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-7">
-                            <div class="hero-area-content pr-50">
-                                <h2>@movie.MovieName</h2>
-                                <div class="review">
-                                    <div class="author-review">
-                                        <i class="icofont icofont-star"></i>
-                                        <i class="icofont icofont-star"></i>
-                                        <i class="icofont icofont-star"></i>
-                                        <i class="icofont icofont-star"></i>
-                                        <i class="icofont icofont-star"></i>
-                                    </div>
-                                    <h4>@movie.Vote votes</h4>
-                                </div>
-                                <p>@movie.Description</p>
-                                <h3>Cast:</h3>
-                                <div class="slide-cast">
-                                    <div class="single-slide-cast">
-                                        <img src="~/Content/assets/img/cast/cast1.png" alt="about" />
-                                    </div>
-                                    <div class="single-slide-cast">
-                                        <img src="~/Content/assets/img/cast/cast2.html" alt="about" />
-                                    </div>
-                                    <div class="single-slide-cast">
-                                        <img src="~/Content/assets/img/cast/cast3.png" alt="about" />
-                                    </div>
-                                    <div class="single-slide-cast">
-                                        <img src="~/Content/assets/img/cast/cast4.png" alt="about" />
-                                    </div>
-                                    <div class="single-slide-cast">
-                                        <img src="~/Content/assets/img/cast/cast5.png" alt="about" />
-                                    </div>
-                                    <div class="single-slide-cast">
-                                        <img src="~/Content/assets/img/cast/cast6.png" alt="about" />
-                                    </div>
-                                    <div class="single-slide-cast">
-                                        <img src="~/Content/assets/img/cast/cast7.png" alt="about" />
-                                    </div>
-                                    <div class="single-slide-cast text-center">
-                                        5+
-                                    </div>
-                                </div>
-                                <div class="slide-trailor">
-                                    <h3>Watch Trailer</h3>
-                                    <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
 
-            </div>
-
-        </div>
-    </section>*@
-<!-- hero area end -->
 <!-- portfolio section start -->
 
-<section class="hero-area" id="home">
+@*<section class="hero-area" id="home">
     @{
         Html.RenderPartial("get3Slide");
     }
 
-</section>
+</section>*@
+<div class="container">
+    <div class="hero-area-slider">
+
+        @foreach (var movie in ViewBag.MovieDetails@*.OrderByDescending(item => item.MovieDetailId).Take(3).ToList()*@)
+        {
+
+            <div class="row hero-area-slide">
+                <div class="col-lg-6 col-md-5">
+                    <div class="hero-area-content">
+                        <img src="~/Content/assets/img/slide2.png" alt="about" />
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-7">
+                    <div class="hero-area-content pr-50">
+                        <h2>@movie.Movie.MovieName</h2>
+                        <div class="review">
+                            <div class="author-review">
+                                <i class="icofont icofont-star"></i>
+                                <i class="icofont icofont-star"></i>
+                                <i class="icofont icofont-star"></i>
+                                <i class="icofont icofont-star"></i>
+                                <i class="icofont icofont-star"></i>
+                            </div>
+                            <h4>@movie.Movie.Vote votes</h4>
+                        </div>
+                        <p>@movie.Movie.Description</p>
+                        <h3>Cast:</h3>
+                        <div class="slide-cast">
+
+                            @*@foreach (var moviedetail in Model.Where(n => n.MovieId == @movie.Movie.MovieId))*@
+                            @foreach (var celebrity in ViewBag.Celebrities)
+                            {
+                            <div class="single-slide-cast">
+                                <img src="~/Content/assets/img/cast/@celebrity.UrlAvatar" alt="about" />
+                            </div>
+
+                            }
+                            <div class="single-slide-cast text-center">
+                                5+
+                            </div>
+                        </div>
+                        <div class="slide-trailor">
+                            <h3>Watch Trailer</h3>
+                            <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>
 
 
 @*@{
-    Html.RenderPartial("_PortfolioPartial");
-}*@
+        Html.RenderPartial("_PortfolioPartial");
+    }*@
+
+<section class="portfolio-area pt-60">
+    <div class="container">
+        <div class="row flexbox-center">
+            <div class="col-lg-6 text-center text-lg-left">
+                <div class="section-title">
+                    <h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="portfolio-menu">
+                    <ul>
+                        <li data-filter="*" class="active">Latest</li>
+                        <li data-filter=".soon">Comming Soon</li>
+                        <li data-filter=".top">Top Rated</li>
+                        <li data-filter=".released">Recently Released</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row portfolio-item">
+                    @foreach (var movie in ViewBag.movie)
+                    {
+                        <div class="col-md-4 col-sm-6 soon released">
+                            <div class="single-portfolio">
+                                <div class="single-portfolio-img">
+                                    <img src="~/Content/assets/img/@movie.ImageURL" alt="portfolio" />
+                                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                                        <i class="icofont icofont-ui-play"></i>
+                                    </a>
+                                </div>
+                                <div class="portfolio-content">
+                                    <h2>@movie.MovieName</h2>
+                                    <div class="review">
+                                        <div class="author-review">
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        </div>
+                                        <h4>@movie.Vote voters</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="col-lg-3 text-center text-lg-left">
+                <div class="portfolio-sidebar">
+                    <img src="~/Content/assets/img/sidebar/sidebar1.png" alt="sidebar" />
+                    <img src="~/Content/assets/img/sidebar/sidebar2.png" alt="sidebar" />
+                    <img src="~/Content/assets/img/sidebar/sidebar3.png" alt="sidebar" />
+                    <img src="~/Content/assets/img/sidebar/sidebar4.png" alt="sidebar" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- portfolio section end -->
 <!-- video section start -->
 <section class="video ptb-90">
     <div class="container">

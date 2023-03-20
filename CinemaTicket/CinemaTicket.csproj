@@ -406,7 +406,6 @@
     <Content Include="Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
     <Content Include="Views\Shared\_HeroAreaPartial.cshtml" />
-    <Content Include="Views\Movies\get3Slide.cshtml" />
     <Content Include="Views\Shared\get3Slide.cshtml" />
     <Content Include="Views\MovieDetails\de.cshtml" />
     <Content Include="Views\Shared\_PortfolioPartial.cshtml" />
@@ -414,6 +413,7 @@
     <Content Include="Views\Celebrities\Details.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\Home\GetAllMovie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
