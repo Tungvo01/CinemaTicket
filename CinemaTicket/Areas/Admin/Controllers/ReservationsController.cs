@@ -25,6 +25,25 @@ namespace CinemaTicket.Areas.Admin.Controllers
         // GET: Admin/Reservations/Details/5
         public ActionResult Details(int? id)
         {
+            var result = (from r in db.Reservations
+                          join c in db.Users on r.CustomerId equals c.Id
+                          join s in db.Seats on r.SeatId equals s.SeatId
+                          join sh in db.Shows on r.ShowId equals sh.ShowId
+                          join ci in db.Cinemas on sh.CinemaId equals ci.CinemaId
+                          join sd in db.ShowDays on sh.ShowDayId equals sd.ShowDayId
+                          join st in db.ShowTimes on sh.ShowTimeId equals st.ShowTimeId
+                          join m in db.Movies on sh.MovieId equals m.MovieId
+                          where r.ReservationId == id
+                          select new
+                          {
+                              MovieName = m.MovieName,
+                              //SeatNo = s.SeatNo,
+                              //Day = sd.Day,
+                              //ShowTimeId = st.ShowTimeId,
+                              //CinemaName = ci.CinemaName
+                          }).ToList();
+
+            ViewBag.Show = result;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -34,7 +53,7 @@ namespace CinemaTicket.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(reservation);
+            return View();
         }
 
         // GET: Admin/Reservations/Create

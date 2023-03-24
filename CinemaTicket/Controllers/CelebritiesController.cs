@@ -19,8 +19,8 @@ namespace CinemaTicket.Controllers
         // GET: Celebrities
         public ActionResult Index()
         {
-             
-            return View(db.Celebrities.ToList());
+            
+            return View(db.Celebrities.FirstOrDefault());
         }
 
         public ActionResult Details(int? id)

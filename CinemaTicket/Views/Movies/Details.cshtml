@@ -104,7 +104,7 @@
                                 <div class="transformers-right">
                                     @foreach (var item in ViewBag.ShowDays)
                                     {
-                                        <span style="padding-right:10px">@item.Day  </span>
+                                        <span style="padding-right: 10px">@item.Day  </span>
 
                                     }
                                 </div>
@@ -114,18 +114,19 @@
                                     Time:
                                 </div>
                                 <div class="transformers-right">
-                                        @foreach (var item in ViewBag.ShowTimes)
-                                        {
-                                            <span style="padding-right: 10px">@item.Time  </span>
+                                    @foreach (var item in ViewBag.ShowTimes)
+                                    {
+                                        <span style="padding-right: 10px">@item.Time  </span>
 
-                                        }
+                                    }
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <a href="#" class="theme-btn"><i class="icofont icofont-ticket"></i> BUY TICKET</a>
+          
+            <a href = "@Url.Action("ChooseShow", "Reservations", new { MovieId = ViewBag.Movies.MovieId, ShowId = "1" })" class="theme-btn"><i class="icofont icofont-ticket"></i> BUY TICKET</a>
         </div>
     </div>
 </section><!-- transformers area end -->

@@ -49,7 +49,7 @@ namespace CinemaTicket.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MovieId,MovieName")] Movie movie)
+        public ActionResult Create([Bind(Include = "MovieId,MovieName,StartDate, EndDate")] Movie movie)
         {
             if (ModelState.IsValid)
             {

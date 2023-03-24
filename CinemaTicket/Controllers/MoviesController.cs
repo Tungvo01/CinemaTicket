@@ -29,10 +29,15 @@ namespace CinemaTicket.Controllers
         {
             //ViewBag.MovieDetails = db.MovieDetails.Find()
             ViewBag.Movies = db.Movies.Find(id);//lay dc ten film
-            ViewBag.Shows = db.Shows.ToList();
-              ViewBag.ShowDays = db.ShowDays.ToList();
+            ViewBag.Shows = db.Shows.Where(p => p.MovieId == id).ToList();
+            ViewBag.ShowDays = db.ShowDays.ToList();
+
+            
+            ViewBag.Rersevations = db.Reservations.ToList();
             ViewBag.ShowTimes = db.ShowTimes.ToList();
             ViewBag.Cinemas = db.Cinemas.ToList();// lấy hết celebrities của 3 phim trên
+
+
 
             if (id == null)
             {
@@ -44,7 +49,7 @@ namespace CinemaTicket.Controllers
                 return HttpNotFound();
             }
 
-          
+
 
             return View(movie);
 
@@ -57,11 +62,11 @@ namespace CinemaTicket.Controllers
             var lastThreeItems = db.MovieDetails.Include(c => c.Movie).Include(c => c.Celebrity)
                 .Take(3)
                 .ToList();
-                
+
             return View(lastThreeItems);
         }
 
-       
+
 
 
 

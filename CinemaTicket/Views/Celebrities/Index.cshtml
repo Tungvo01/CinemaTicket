@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CinemaTicket.Models.CinemaModels.Celebrity>
+﻿@model  CinemaTicket.Models.CinemaModels.Celebrity
 
 @{
     ViewBag.Title = "Index";
@@ -26,8 +26,7 @@
     </div>
 </section><!-- breadcrumb area end -->
 
-@foreach (var celebrity in Model)
-{
+
     <!-- transformers area start -->
     <section class="transformers-area">
         <div class="container">
@@ -35,12 +34,12 @@
                 <div class="row flexbox-center">
                     <div class="col-lg-5 text-lg-left text-center">
                         <div class="transformers-content">
-                            <img src="~/Content/assets/img/@celebrity.UrlAvatar" alt="about" />
+                            <img src="~/Content/assets/img/@Model.UrlAvatar" alt="about" />
                         </div>
                     </div>
                     <div class="col-lg-7">
                         <div class="transformers-content mtr-30">
-                            <h2>@celebrity.Name</h2>
+                            <h2>@Model.Name</h2>
                             <a href="#" class="theme-btn">Biography</a>
                             @*<a href="#">Filmography</a>*@
                             <ul>
@@ -49,7 +48,7 @@
                                         Height:
                                     </div>
                                     <div class="transformers-right">
-                                        @celebrity.Height
+                                        @Model.Height
                                     </div>
                                 </li>
                                 <li>
@@ -57,7 +56,7 @@
                                         Weight:
                                     </div>
                                     <div class="transformers-right">
-                                        @celebrity.Weight
+                                        @Model.Weight
                                     </div>
                                 </li>
                                 <li>
@@ -89,7 +88,7 @@
                                         Language:
                                     </div>
                                     <div class="transformers-right">
-                                        @celebrity.Language
+                                        @Model.Language
                                     </div>
                                 </li>
                                 <li>
@@ -116,7 +115,7 @@
                     <div class="details-content">
                         <div class="details-overview">
                             <h2>Overview</h2>
-                            <p>@celebrity.Description</p>
+                            <p>@Model.Description</p>
                         </div>
                       
                         <div class="details-thumb">
@@ -125,13 +124,13 @@
                                     <i class="icofont icofont-simple-left"></i>
                                 </div>
                                 <div class="thumb-text">
-                                    <h4><a>@Html.ActionLink("Previous Post", "Details", new { id = celebrity.CelebrityId })</a></h4>
+                                    <h4><a>@Html.ActionLink("Previous Post", "Details", new { id = Model.CelebrityId })</a></h4>
                                     <p>Standard Post With Gallery</p>
                                 </div>
                             </div>
                             <div class="details-thumb-next">
                                 <div class="thumb-text">
-                                    <h4> <a>@Html.ActionLink("Next Post", "Details", new { id = celebrity.CelebrityId })</a></h4>
+                                    <h4> <a>@Html.ActionLink("Next Post", "Details", new { id = Model.CelebrityId })</a></h4>
                                     <p>Standard Post With Preview Image</p>
                                 </div>
                                 <div class="thumb-icon">
@@ -152,7 +151,7 @@
         </div>
     </section><!-- details area end -->
 
-}
+
 @{
     Html.RenderPartial("_HeaderPartial");
 }

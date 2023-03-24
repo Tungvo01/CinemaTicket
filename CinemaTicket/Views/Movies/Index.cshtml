@@ -54,7 +54,7 @@
                                     </a>
                                 </div>
                                 <div class="portfolio-content">
-                                    <h2>@movie.MovieName</h2>
+                                    <h2><a href="@Url.Action("Details", "Movies", new { id = movie.MovieId })">@movie.MovieName</a></h2>
                                     <div class="review">
                                         <div class="author-review">
                                             <i class="icofont icofont-star"></i>

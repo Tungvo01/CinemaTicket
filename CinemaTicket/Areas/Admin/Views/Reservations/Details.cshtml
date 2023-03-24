@@ -12,11 +12,16 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+          
             @Html.DisplayNameFor(model => model.Customer.Name)
+
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Customer.Name)
+            @foreach (var item in @ViewBag.Show)
+            {
+                @item;
+            }
         </dd>
 
         <dt>
@@ -38,6 +43,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ReservationId }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ReservationId }) |*@
     @Html.ActionLink("Back to List", "Index")
 </p>
