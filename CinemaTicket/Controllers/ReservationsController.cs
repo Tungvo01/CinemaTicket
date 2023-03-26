@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web;
 using System.Web.Mvc;
 
@@ -70,6 +71,8 @@ namespace CinemaTicket.Controllers
             ViewBag.ShowDays = new SelectList(db.Shows.Where(p => p.MovieId == MovieId).Include("ShowDays"), "ShowDayId", "ShowDayId");
             ViewBag.ShowId = new SelectList(db.Shows, "ShowId", "ShowId");
      
+
+            ViewBag.ReservationId = db.Reservations.Where(c=>c.ShowId == ShowId).ToList();
             //day movie
             var ShowDays = db.ShowDays
                 .Join(db.Shows,
@@ -100,12 +103,40 @@ namespace CinemaTicket.Controllers
                .Select(x => x.Cinemas.CinemaName).ToList();
 
             ViewBag.Cimemas = Cinemas;
+            var status = (from r in db.Reservations
+                          join s in db.Seats on r.SeatId equals s.SeatId
+                          where r.SeatId == 2 
+                          select s.Status).FirstOrDefault();
 
+            //status = true;
+            //db.SaveChanges();
 
-            return View();
+            return View(db.Reservations.Where(c => c.ShowId == ShowId).ToList());
         }
 
 
+        public ActionResult a(int[] seats)
+        {
+            //int[] b = { 1, 2 };
+            //for( int i = 0; i < b.Length; i++)
+            //{
+                var status = (from r in db.Reservations
+                              join s in db.Seats on r.SeatId equals s.SeatId
+                              where r.SeatId == 1
+                              select s.Status).FirstOrDefault();
+
+                //status. = true;
+                //db.SaveChanges();
+            //}
+
+            //select s.Status from reservations r, Seats s where r.SeatId = s.SeatId and r.SeatId = 2 and r.ReservationId ==??
+
+
+            //db.Movies.Add(movie);???? s.Status = true;
+            //db.SaveChanges();
+
+            return View();
+        }
 
 
 

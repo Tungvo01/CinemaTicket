@@ -47,6 +47,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -308,6 +314,7 @@
     <Content Include="Content\assets\js\jquery.slicknav.min.js" />
     <Content Include="Content\assets\js\main.js" />
     <Content Include="Content\assets\js\owl.carousel.min.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -419,6 +426,7 @@
     <Content Include="Views\Home\GetAllMovie.cshtml" />
     <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\Reservations\ChooseShow.cshtml" />
+    <Content Include="Views\Reservations\a.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

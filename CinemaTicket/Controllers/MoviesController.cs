@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CinemaTicket.Models;
 using CinemaTicket.Models.CinemaModels;
+using PagedList;
 
 namespace CinemaTicket.Controllers
 {
@@ -19,9 +20,17 @@ namespace CinemaTicket.Controllers
             db = new ApplicationDbContext();
         }
         // GET: Movies
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Movies.ToList());
+
+            if(page == null) page = 1;
+
+            var Movies = (from l in db.Movies select l).OrderBy(x => x.MovieId);
+
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+
+            return View(Movies.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Movies/Details/5
@@ -67,7 +76,13 @@ namespace CinemaTicket.Controllers
         }
 
 
+        public ActionResult Latest()
+        {
 
+          
+
+            return View();
+        }
 
 
         protected override void Dispose(bool disposing)

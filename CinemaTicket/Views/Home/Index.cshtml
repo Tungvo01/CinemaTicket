@@ -1,4 +1,4 @@
-﻿@*@model IEnumerable<CinemaTicket.Models.CinemaModels.Movie>*@
+﻿@model IEnumerable<CinemaTicket.Models.CinemaModels.Celebrity>
 
 @{
     ViewBag.Title = "Index";
@@ -57,12 +57,12 @@
             <div class="row hero-area-slide">
                 <div class="col-lg-6 col-md-5">
                     <div class="hero-area-content">
-                        <img src="~/Content/assets/img/slide2.png" alt="about" />
+                        <img src="~/Content/assets/img/@movie.Movie.ImageURL" alt="about" />
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-7">
                     <div class="hero-area-content pr-50">
-                        <h2>@movie.Movie.MovieName</h2>
+                        <h2><a href="@Url.Action("Details", "Movies", new { id = movie.MovieId })">@movie.Movie.MovieName</a></h2>
                         <div class="review">
                             <div class="author-review">
                                 <i class="icofont icofont-star"></i>
@@ -73,12 +73,16 @@
                             </div>
                             <h4>@movie.Movie.Vote votes</h4>
                         </div>
-                        <p>@movie.Movie.Description</p>
+                        <p style=" overflow: hidden; text-overflow: ellipsis; line-height: 1.5em; height: 6em;">@movie.Movie.Description</p>
                         <h3>Cast:</h3>
                         <div class="slide-cast">
 
                             @*@foreach (var moviedetail in Model.Where(n => n.MovieId == @movie.Movie.MovieId))*@
-                            @foreach (var celebrity in ViewBag.Celebrities)
+
+                            @*@{ 
+                                ViewBag.Celebrities.Where(n => n.CelebrityId == @movie.CelebrityId);
+                            }*@
+                            @foreach (var celebrity in Model.Where(n => n.CelebrityId == movie.CelebrityId))
                             {
                             <div class="single-slide-cast">
                                 <img src="~/Content/assets/img/cast/@celebrity.UrlAvatar" alt="about" />
@@ -141,7 +145,7 @@
                                     </a>
                                 </div>
                                 <div class="portfolio-content">
-                                   <h2><a href="@Url.Action("Details", "Movies", new { id = movie.MovieId })">@movie.MovieName</a></h2> 
+                                    <h2 style="overflow: hidden; text-overflow: ellipsis; height: 30px;"><a href="@Url.Action("Details", "Movies", new { id = movie.MovieId })">@movie.MovieName</a></h2>
                                     <div class="review">
                                         <div class="author-review">
                                             <i class="icofont icofont-star"></i>
@@ -157,6 +161,18 @@
                         </div>
                     }
 
+                </div>
+                @*page*@
+                <div>
+                    <ul class="pagination">
+                       
+                        @*@for (int i = 1; i <= Math.Ceiling((decimal)ViewBag.movie.Count() / ViewBag.PageSize); i++)
+                        {
+                            <li class="@(ViewBag.PageNumber == i ? "active" : "")">
+                                @Html.ActionLink(i.ToString(), "Index", new { page = i })
+                            </li>
+                        }*@
+                    </ul>
                 </div>
             </div>
             <div class="col-lg-3 text-center text-lg-left">

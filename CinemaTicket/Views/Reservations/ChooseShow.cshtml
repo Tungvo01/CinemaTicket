@@ -5,10 +5,6 @@
 
 
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE HTML>
 <html lang="zxx">
 
@@ -61,49 +57,36 @@
                         <table class="ticket-table-seat">
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>100</td>
+                                    @for (int i = 1; i <= 7; i++)
+                                    {
+                                        <td class="seatNo active" >@i</td>
+                                    }
+
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    @for (int i = 8; i <= 14; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
+
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>95</td>
-                                    <td>1</td>
-                                    <td>70</td>
-                                    <td>88</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    @for (int i = 15; i <= 21; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    @for (int i = 22; i <= 28; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    @for (int i = 29; i <= 35; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                             </tbody>
                         </table>
@@ -129,49 +112,35 @@
                         <table class="ticket-table-seat">
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    @for (int i = 36; i <= 43; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                                 <tr>
-                                    <td class="active">1</td>
-                                    <td class="active">1</td>
-                                    <td class="active">1</td>
-                                    <td class="active">1</td>
-                                    <td class="active">1</td>
-                                    <td class="active">1</td>
-                                    <td class="active">1</td>
+                                    @for (int i = 44; i <= 51; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+
+                                    @for (int i = 52; i <= 59; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    @for (int i = 60; i <= 67; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    @for (int i = 68; i <= 75; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                             </tbody>
                         </table>
@@ -197,53 +166,57 @@
                         <table class="ticket-table-seat">
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    @for (int i = 76; i <= 83; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    @for (int i = 84; i <= 91; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    @for (int i = 92; i <= 99; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    @for (int i = 100; i <= 107; i++)
+                                    {
+                                        <td class="seatNo {@i}" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    @for (int i = 108; i <= 115; i++)
+                                    {
+                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    }
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                    <script language="javascript">
+
+                        function handleClick(i) {
+                            var item = document.getElementsByClassName("seatNo")[i - 1];
+                           
+                            if (item.classList.contains("active")) {
+                                item.classList.remove("active");
+                            } else {
+                                item.classList.add('active');
+                            }
+                            var ticketnumber = document.getElementById("ticketnumber")
+
+                            ticketnumber.textContent = ""
+
+                            @*@ViewBag.ShowTimes*@
+                        }
+
+
+                    </script>
                     <div class="ticket-box-available">
                         <input type="checkbox">
                         <span>Available</span>
@@ -253,7 +226,8 @@
                         <span>Selected</span>
                     </div>
                     <a href="#" class="theme-btn">previous</a>
-                    <a href="#" class="theme-btn">Next</a>
+                    @Html.ActionLink("Newfsdfjjds", "a", "Reservations", new { seats = new[] { 1, 2 } }, null)
+                    @*<a href="@Url.Action("a", "Reservations", new {seats = new[] { 1, 2}})" class="theme-btn">Next</a>*@
                 </div>
             </div>
             <div class="col-lg-3 offset-lg-1">
@@ -309,8 +283,8 @@
                             <span>@ViewBag.Movie.MovieName</span>
                         </li>
                         <li>
-                            <p>Ticket number</p>
-                            <span>2 Adults, 2 Children, 2 Seniors</span>
+                            <p id="ticketnumber">Ticket number</p>
+                            <span></span>
                         </li>
                         <li>
                             <p>Price</p>

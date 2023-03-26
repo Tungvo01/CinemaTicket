@@ -42,6 +42,13 @@ body {
     color: #fff;
 }
 
+.page pagination-container pagination li a {
+    width: 50px;
+    display: block;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
 /*----------------------------
 ---------- RESET CSS ---------
 ----------------------------*/
@@ -52,7 +59,7 @@ h4,
 h5,
 h6 {
     font-weight: 500;
-	color: #fff;
+    color: #fff;
 }
 h1,
 h2,
