@@ -1,6 +1,9 @@
-﻿
+﻿@*@model IEnumerable<CinemaTicket.Models.CinemaModels.Reservation>*@
+
 @{
     Layout = null;
+    int k = 0;
+
 }
 
 
@@ -56,13 +59,38 @@
                     <div class="ticket-box-table">
                         <table class="ticket-table-seat">
                             <tbody>
+                                @*<tr>
+                                        @{
+                                            int element1 = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(0);
+                                            int element2 = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(1);
+                                            <td>@element1</td>
+                                            <td>@element2</td>
+                                        }
+                                    </tr>*@
                                 <tr>
-                                    @for (int i = 1; i <= 7; i++)
-                                    {
-                                        <td class="seatNo active" >@i</td>
+                                    @{
+                                        for (int i = 1; i <= 7; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
 
+
                                 </tr>
+
                                 <tr>
                                     @for (int i = 8; i <= 14; i++)
                                     {
@@ -202,7 +230,7 @@
 
                         function handleClick(i) {
                             var item = document.getElementsByClassName("seatNo")[i - 1];
-                           
+
                             if (item.classList.contains("active")) {
                                 item.classList.remove("active");
                             } else {
@@ -210,8 +238,19 @@
                             }
                             var ticketnumber = document.getElementById("ticketnumber")
 
-                            ticketnumber.textContent = ""
 
+                            var activeElements = document.querySelectorAll(".active");
+                            var activeElementsArray = Array.from(activeElements);
+                            var Ticket = "";
+                            for (var i = 0; i < activeElementsArray.length; i++) {
+                                var text = activeElementsArray[i].textContent;
+                                Ticket += text + ","
+                                
+                            }
+                            ticketnumber.textContent = Ticket
+
+                            var price = document.getElementById("price")
+                            price.textContent = (9 * activeElementsArray.length).toString() + "$";
                             @*@ViewBag.ShowTimes*@
                         }
 
@@ -283,12 +322,12 @@
                             <span>@ViewBag.Movie.MovieName</span>
                         </li>
                         <li>
-                            <p id="ticketnumber">Ticket number</p>
-                            <span></span>
+                            <p >Ticket number</p>
+                            <span id="ticketnumber"></span>
                         </li>
                         <li>
                             <p>Price</p>
-                            <span>89$</span>
+                            <span id="price"></span>
                         </li>
                     </ul>
                 </div>

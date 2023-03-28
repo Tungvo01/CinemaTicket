@@ -103,13 +103,22 @@ namespace CinemaTicket.Controllers
                .Select(x => x.Cinemas.CinemaName).ToList();
 
             ViewBag.Cimemas = Cinemas;
-            var status = (from r in db.Reservations
-                          join s in db.Seats on r.SeatId equals s.SeatId
-                          where r.SeatId == 2 
-                          select s.Status).FirstOrDefault();
 
+
+            var seatIds = from r in db.Reservations
+                          where r.ShowId == ShowId
+                          orderby r.SeatId
+                          select r.SeatId;
+
+            ViewBag.SeatIds = seatIds;
+
+
+
+            //ViewBag.statusList = statusList;
             //status = true;
             //db.SaveChanges();
+
+
 
             return View(db.Reservations.Where(c => c.ShowId == ShowId).ToList());
         }

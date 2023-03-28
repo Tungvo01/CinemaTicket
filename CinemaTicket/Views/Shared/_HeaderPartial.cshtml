@@ -5,30 +5,36 @@
                 <a href="index-2.html"><img src="~/Content/assets/img/logo.png" alt="logo" /></a>
             </div>
             <div class="header-right">
-                <form action="#">
-                    <select>
-                        <option value="Movies">Movies</option>
-                        <option value="Movies">Movies</option>
-                        <option value="Movies">Movies</option>
-                    </select>
-                    <input type="text" />
-                    <button><i class="icofont icofont-search"></i></button>
-                </form>
+                @*<form action="#">
+            <select>
+                <option value="Movies">Movies</option>
+                <option value="Movies">Movies</option>
+                <option value="Movies">Movies</option>
+            </select>
+            <input type="text" />
+            <button><i class="icofont icofont-search"></i></button>
+        </form>*@
+                @using (Html.BeginForm())
+                {
+                    @Html.TextBox("SearchString", "", new {@style = "height: 35px; margin-left: 0; border-left: none"})
+                    @*<input type="text" />*@
+                    <button type="submit" value="Search"><i class="icofont icofont-search"></i></button>
+                }
                 <ul>
                     @Html.Partial("_LoginPartial")
 
                 </ul>
 
                 @*<ul>
-                    <li><a href="#">Welcome Guest!</a></li>
-                    <li><a class="login-popup" href="#">Login</a></li>
-                </ul>*@
+            <li><a href="#">Welcome Guest!</a></li>
+            <li><a class="login-popup" href="#">Login</a></li>
+        </ul>*@
             </div>
             <div class="menu-area">
                 <div class="responsive-menu"></div>
                 <div class="mainmenu">
                     <ul id="primary-menu">
-                       
+
                         <li><a class="active" href="@Url.Action("Index", "Home")">Home</a></li>
                         <li><a href="@Url.Action("Index", "Movies")">Movies</a></li>
                         <li><a href="@Url.Action("Index", "Celebrities")">CelebritiesList</a></li>

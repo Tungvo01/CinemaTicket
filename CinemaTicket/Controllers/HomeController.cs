@@ -16,8 +16,10 @@ namespace CinemaTicket.Controllers
         {
             db = new ApplicationDbContext();
         }
+     
         public ActionResult Index(int? page)
         {
+
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             ViewBag.pageSize = pageSize;

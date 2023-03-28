@@ -1,9 +1,5 @@
 ﻿@model PagedList.IPagedList<CinemaTicket.Models.CinemaModels.Movie>
 @using PagedList.Mvc
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
 @{
     Html.RenderPartial("_HeaderPartial");
@@ -31,8 +27,8 @@
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="portfolio-menu">
                     <ul>
-                        <li class="active">@Html.ActionLink("All", "Index", "Movies", null)</li>
-                        <li>@Html.ActionLink("Comming Soon", "Comming", "Movies", null)   </li>
+                        <li>@Html.ActionLink("All", "Index", "Movies", null)</li>
+                        <li class="active">@Html.ActionLink("Comming Soon", "Comming", "Movies", null)   </li>
                         <li>@Html.ActionLink("Latest", "Latest", "Movies", null) </li>
                         <li>Recently Released</li>
                     </ul>

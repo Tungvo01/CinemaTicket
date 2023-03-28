@@ -56,6 +56,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -195,6 +196,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Identity\AppUser.cs" />
     <Compile Include="Migrations\202303160206558_initModel.cs" />
     <Compile Include="Migrations\202303160206558_initModel.designer.cs">
       <DependentUpon>202303160206558_initModel.cs</DependentUpon>
@@ -427,6 +429,8 @@
     <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\Reservations\ChooseShow.cshtml" />
     <Content Include="Views\Reservations\a.cshtml" />
+    <Content Include="Views\Movies\Latest.cshtml" />
+    <Content Include="Views\Movies\Comming.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

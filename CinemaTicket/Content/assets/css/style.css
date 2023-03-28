@@ -468,7 +468,7 @@ option {
 }
 
 .single-slide-cast img {
-    border-radius: 100%;
+    border-radius: 50%;
 }
 
 .single-slide-cast.text-center {

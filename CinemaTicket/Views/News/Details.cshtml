@@ -68,31 +68,23 @@
                 <div class="blog-sidebar">
                     <h4>Recent Posts</h4>
                     <ul>
-                        <li><a href="#">Transformers: The Last Knight</a></li>
-                        <li><a href="#">Duis aute irure dolor in reprehenderit in voluptate</a></li>
-                        <li><a href="#">Nostrud exercitation ullamco laboris</a></li>
-                        <li><a href="#">Magnam aliquam quaerat voluptatem</a></li>
-                        <li><a href="#">Magnam aliquam quaerat voluptatem</a></li>
-                        <li><a href="#">Excepteur sint occaecat cupidatat proi</a></li>
+                        @foreach (var item in @ViewBag.RecentPosts)
+                        {
+                            <li><a href="@Url.Action("Details", "News", new { id = @item.NewsId })">@item.Title</a></li>
+                            
+                        }
+                       
                     </ul>
-                    <h4>Recent Comments</h4>
+                    @*<h4>Recent Comments</h4>
                     <ul>
                         <li><a href="#">admin on Justice League</a></li>
                         <li><a href="#">admin on Mask Man</a></li>
                         <li><a href="#">admin on Angle Pori</a></li>
                         <li><a href="#">admin on The Man</a></li>
                         <li><a href="#">admin on WP Devil</a></li>
-                    </ul>
-                    <h4>Categories</h4>
-                    <ul>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Feature</a></li>
-                        <li><a href="#">Media</a></li>
-                        <li><a href="#">Movie</a></li>
-                        <li><a href="#">Trailers_video</a></li>
-                        <li><a href="#">Uncategorized</a></li>
-                    </ul>
-                    <h4>Archives</h4>
+                    </ul>*@
+                   
+                    <!--<-->@*h4>Archives</h4>
                     <ul>
                         <li><a href="#">February 2018</a></li>
                         <li><a href="#">January 2018</a></li>
@@ -101,7 +93,7 @@
                     </ul>
                     <div class="portfolio-sidebar">
                         <img src="assets/img/sidebar/sidebar1.png" alt="sidebar" />
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>

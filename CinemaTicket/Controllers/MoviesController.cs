@@ -20,17 +20,24 @@ namespace CinemaTicket.Controllers
             db = new ApplicationDbContext();
         }
         // GET: Movies
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page,string SearchString="")
         {
+            if (page == null) page = 1;
 
-            if(page == null) page = 1;
-
-            var Movies = (from l in db.Movies select l).OrderBy(x => x.MovieId);
 
             int pageSize = 6;
             int pageNumber = (page ?? 1);
+            if (SearchString != "")
+            {
+                var Movies = db.Movies.Where(x=>x.MovieName.ToUpper().Contains(SearchString.ToUpper())).OrderBy(x => x.MovieId);
+                return View(Movies.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                var Movies = (from l in db.Movies select l).OrderBy(x => x.MovieId);
+                return View(Movies.ToPagedList(pageNumber, pageSize));
 
-            return View(Movies.ToPagedList(pageNumber, pageSize));
+            }
         }
 
         // GET: Movies/Details/5
@@ -65,25 +72,58 @@ namespace CinemaTicket.Controllers
         }
 
 
-        public ActionResult get3Slide()
+        //public ActionResult get3Slide()
+        //{
+
+        //    var lastThreeItems = db.MovieDetails.Include(c => c.Movie).Include(c => c.Celebrity)
+        //        .Take(3)
+        //        .ToList();
+
+        //    return View(lastThreeItems);
+        //}
+
+
+        public ActionResult Latest(int? page, string SearchString = "")
         {
+            if (page == null) page = 1;
 
-            var lastThreeItems = db.MovieDetails.Include(c => c.Movie).Include(c => c.Celebrity)
-                .Take(3)
-                .ToList();
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            if (SearchString != "")
+            {
+                var Movies = db.Movies.Where(x => x.MovieName.ToUpper().Contains(SearchString.ToUpper())).OrderBy(m => m.StartDate);
+                return View(Movies.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                var Movies = db.Movies.OrderBy(m => m.StartDate);
+                return View(Movies.ToPagedList(pageNumber, pageSize));
 
-            return View(lastThreeItems);
+            }
         }
 
-
-        public ActionResult Latest()
+        public ActionResult Comming(int? page, string SearchString = "")
         {
+            if (page == null) page = 1;
 
-          
 
-            return View();
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+         
+           
+            if (SearchString != "")
+            {
+                var upCommingMovie = db.Movies.Where((x) => x.MovieName.ToUpper().Contains(SearchString.ToUpper()) && x.StartDate > DateTime.Now).OrderBy(m => m.MovieId);
+                return View(upCommingMovie.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                var upCommingMovie = db.Movies.Where(p => p.StartDate > DateTime.Now).ToList();
+                return View(upCommingMovie.ToPagedList(pageNumber, pageSize));
+
+            }
+
         }
-
 
         protected override void Dispose(bool disposing)
         {
