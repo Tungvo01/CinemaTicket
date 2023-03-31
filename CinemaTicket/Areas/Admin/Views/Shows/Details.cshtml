@@ -5,47 +5,91 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+@*<h2>Details</h2>*@
+
+<div class="page-header">
+    <h4 class="page-title"> Detail </h4>
+</div>
+@*<div>
+        <h4>Show</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Cinema.CinemaName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cinema.CinemaName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Movie.MovieName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Movie.MovieName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ShowDay.ShowDayId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ShowDay.ShowDayId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ShowTime.Time)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ShowTime.Time)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ShowId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+
+            <form class="form-sample">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Cinema's Name: </label>
+                            <label class="col-sm-9 form-control">@*@Html.DisplayFor(model => model.Cinema.CinemaName)*@ @ViewBag.CinemaName</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Movie's Name: </label>
+                            <label class="col-sm-9 form-control">@*@Html.DisplayFor(model => model.Movie.MovieName)*@ @ViewBag.MovieName</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Day: </label>
+                            <label class="col-sm-9 form-control">@*@Html.DisplayFor(model => model.ShowDay)*@ @ViewBag.ShowDay</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Time: </label>
+                            <label class="col-sm-9 form-control">@*@Html.DisplayFor(model => model.ShowTime)*@ @ViewBag.ShowTime</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div>
-    <h4>Show</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Cinema.CinemaName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cinema.CinemaName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Movie.MovieName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Movie.MovieName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowDay.ShowDayId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShowDay.ShowDayId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowTime.Time)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShowTime.Time)
-        </dd>
-
-    </dl>
+    <a class="btn btn-secondary  mr-2" href="@Url.Action("Edit", new { id = Model.ShowTimeId })"><i class="mdi mdi-table-edit"></i>Edit</a>
+    <a class="btn btn-primary  mr-2" href="@Url.Action("Index")"><i class="mdi mdi-arrow-left"></i>Back</a>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ShowId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

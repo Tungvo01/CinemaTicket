@@ -5,53 +5,96 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Delete</h2>
+@*<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete this?</h3>*@
+<div class="page-header">
+    <h4 class="page-title"> Delete </h4>
+</div>
 <div>
-    <h4>Show</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Cinema.CinemaName)
-        </dt>
+    @*<h4>Show</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Cinema.CinemaName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cinema.CinemaName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cinema.CinemaName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Movie.MovieName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Movie.MovieName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Movie.MovieName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Movie.MovieName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowDay.ShowDayId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ShowDay.ShowDayId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShowDay.ShowDayId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ShowDay.ShowDayId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowTime.Time)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ShowTime.Time)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShowTime.Time)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ShowTime.Time)
+            </dd>
 
-    </dl>
+        </dl>*@
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                    <form class="form-sample">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Cinema's Name: </label>
+                                    <label class="col-sm-9 form-control">@Html.DisplayFor(model => model.Cinema.CinemaName)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Movie's Name: </label>
+                                    <label class="col-sm-9 form-control">@Html.DisplayFor(model => model.Movie.MovieName)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Day: </label>
+                                    <label class="col-sm-9 form-control">@Html.DisplayFor(model => model.ShowDay)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Time: </label>
+                                    <label class="col-sm-9 form-control">@Html.DisplayFor(model => model.ShowTime)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class=" row-cols-sm-3 text-danger">Are you sure you want to delete this?</h3>
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    </form>
+                </div>
+            </div>
         </div>
+        @*<div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
     }
+</div>
+<div>
+    <a class="btn btn-primary  mr-2" href="@Url.Action("Index")"><i class="mdi mdi-arrow-left"></i>Back</a>
 </div>

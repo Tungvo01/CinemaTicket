@@ -1,34 +1,132 @@
-﻿@model IEnumerable<CinemaTicket.Models.CinemaModels.Movie>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<CinemaTicket.Models.CinemaModels.Movie>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieName)
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MovieName)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MovieId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MovieId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MovieId })
+                </td>
+            </tr>
+        }
+    </table>*@
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MovieName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MovieId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MovieId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MovieId })
-        </td>
-    </tr>
-}
+<div class="page-header">
+    <h4 class="page-title"> Movies </h4>
+    <div class="row float-sm-right">
+        <a class="btn btn-success mr-2" href="@Url.Action("Create", "Movies")">Add Movie</a>
+        @*<button type="submit" class="btn btn-primary mr-2">Add Movie</button>*@
+    </div>
+</div>
+<div class="navbar-nav w-100">
+    <div class="nav-item w-100">
+        <form class="input-group nav-link mt-2 mt-md-0  d-lg-flex search col-md-4 ">
+            @using (Html.BeginForm())
+            {
+                @*@Html.TextBox("SearchString", "", new { @style = "height: 35px; margin-left: 0; border-left: none" })*@
+                @*<input type="text" />*@
+                <input type="search" class="form-control text-light" id="SearchString" name="SearchString" placeholder="Search movies">
+                <span class="input-group-append">
+                    <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify" width="40px"></i></button>
+                </span>
+            }
 
-</table>
+        </form>
+    </div>
+</div>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form class="row forms-sample float-sm-right">
+                        <a class="btn bg-warning mr-2" href="@Url.Action("Edit", new { id = item.MovieId })">Edit</a>
+                        @*<button type="submit" class="btn bg-warning mr-2">Edit</button>*@
+                        @*<button class="btn bg-danger">Delete</button>*@
+                        <a class="btn bg-danger mr-2" href="@Url.Action("Delete", new { id = item.MovieId })">Delete</a>
+                    </form>
+                    <h4 class="card-title"><a class="text-white " href="@Url.Action("Details", new { id = item.MovieId })" alt="Detail">@Html.DisplayFor(modelItem => item.MovieName)</a></h4>
+                    <p class="card-description"> Votes </p>
+                    <div class="form-group " style="width: 265px; height: 425px;">
+                        <img src="~/Content/assets/img/@item.ImageURL" alt="portfolio" style="width: inherit; height: inherit;"/>
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    <div>
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+    <div @*class="MenuTrang"*@>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+</div>
+@*<style>
+
+        .MenuTrang li {
+            display: inline;
+        }
+    </style>
+    <style type="text/css">
+        #mau-nut a {
+            clear: both;
+            background-color: cornflowerblue;
+            color: snow;
+        }
+
+            #mau-nut a:hover {
+                background-color: red;
+                color: snow;
+            }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var maxLength = 100;
+            $(".show-read-more").each(function () {
+                var myStr = $(this).text();
+                if ($.trim(myStr).length > maxLength) {
+                    var newStr = myStr.substring(0, maxLength);
+                    var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                    $(this).empty().html(newStr);
+                    $(this).append(' <a href="javascript:void(0);" class="read-more">đọctiếp...</a > ');
+                    $(this).append('<span class="more-text">' + removedStr + '</span>');
+                }
+            });
+            $(".read-more").click(function () {
+                $(this).siblings(".more-text").contents().unwrap();
+                $(this).remove();
+            });
+        });
+    </script>
+    <style>
+        .show-read-more .more-text {
+            display: none;
+        }
+    </style>*@

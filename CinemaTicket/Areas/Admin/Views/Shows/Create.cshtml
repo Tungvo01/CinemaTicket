@@ -5,59 +5,93 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Create</h2>
+@*<h2>Create</h2>*@
+<div class="page-header">
+    <h4 class="page-title"> Create </h4>
+</div>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Show</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.CinemaId, "CinemaId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CinemaId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CinemaId, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MovieId, "MovieId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MovieId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MovieId, "", new { @class = "text-danger" })
+    @*<div class="form-horizontal">
+            <h4>Show</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.CinemaId, "CinemaId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("CinemaId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CinemaId, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShowDayId, "ShowDayId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ShowDayId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ShowDayId, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.MovieId, "MovieId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("MovieId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MovieId, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShowTimeId, "ShowTimeId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ShowTimeId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ShowTimeId, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ShowDayId, "ShowDayId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ShowDayId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ShowDayId, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.ShowTimeId, "ShowTimeId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ShowTimeId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ShowTimeId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>*@
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label>Cinema's Name</label>
+                        @Html.DropDownList("CinemaId", null, htmlAttributes: new { @class = "form-control text-light" })
+                    </div>
+                    <div class="form-group">
+                        <label>Movie's Name</label>
+                        @Html.DropDownList("MovieId", null, htmlAttributes: new { @class = "form-control text-light" })
+                    </div>
+                    <div class="form-group">
+                        <label>Day</label>
+                        @Html.DropDownList("ShowDayId", null, htmlAttributes: new { @class = "form-control text-light" })
+                    </div>
+                    <div class="form-group">
+                        <label>Time</label>
+                        @Html.DropDownList("ShowTimeId", null, htmlAttributes: new { @class = "form-control text-light" })
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Save  </button>
+                </form>
             </div>
         </div>
     </div>
 }
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "Index")
+</div>*@
+<div>
+    <a class="btn btn-primary  mr-2" href="@Url.Action("Index")"><i class="mdi mdi-arrow-left"></i>Back</a>
 </div>
 
 @section Scripts {

@@ -2,25 +2,46 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CinemaTicket.Models;
 using CinemaTicket.Models.CinemaModels;
+using PagedList;
 
 namespace CinemaTicket.Areas.Admin.Controllers
 {
     [Authorize]
-
     public class MoviesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Admin/Movies
-        public ActionResult Index()
+        public ActionResult Index(int? page, string SearchString = "")
         {
-            return View(db.Movies.ToList());
+
+            if (page == null) page = 1;
+
+
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            if (SearchString != "")
+            {
+                var Movies = db.Movies.Where(x => x.MovieName.ToUpper().Contains(SearchString.ToUpper())).OrderBy(x => x.MovieId);
+                return View(Movies.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                var Movies = (from l in db.Movies select l).OrderBy(x => x.MovieId);
+                return View(Movies.ToPagedList(pageNumber, pageSize));
+
+            }
+
+          
+            //ViewBag.Search = searchMovie;
+           
         }
 
         // GET: Admin/Movies/Details/5
@@ -49,16 +70,82 @@ namespace CinemaTicket.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MovieId,MovieName,StartDate, EndDate")] Movie movie)
+        public ActionResult Create([Bind(Include = "MovieId,MovieName,Description,ImageURL,StartDate,EndDate")] Movie movie)
         {
+
+
+
+
+            //End Upload
+            
+
             if (ModelState.IsValid)
             {
+
+                HttpPostedFileBase file = Request.Files["upload"];
+                if (file != null && file.ContentLength > 0)
+                {
+                          
+
+                    string fileName = Path.GetFileName(file.FileName);
+                    string path = Path.Combine(Server.MapPath("~/Content/assets/img"), fileName);
+
+                    file.SaveAs(path);
+                    movie.ImageURL = fileName;
+                }
+                //End Upload
+
                 db.Movies.Add(movie);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+                //HttpPostedFileBase file = Request.Files["upload"];
+                //if (file != null && file.ContentLength > 0)
+                //{
+
+                //    string fileName = Path.GetFileName(file.FileName);
+                //    string path = Path.Combine(Server.MapPath("~/Images"), fileName);
+
+                //    file.SaveAs(path);
+                //    movie.ImageURL = fileName;
+                //}
+                //db.Movies.Add(movie);
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
             }
 
             return View(movie);
+        }
+
+        //Upload Img
+        [HttpPost]
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            if (file == null && file.ContentLength > 0)
+            {
+                return "";
+            }
+            file.SaveAs(Server.MapPath("~/Content/assets/img/portfolio/" + file.FileName));
+            return "/Content/assets/img/portfolio/" + file.FileName;
+        }
+
+        [HttpPost]
+        public void Upload()
+        {
+
+            if (Request.Files.Count != 0)
+            {
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    var file = Request.Files[i];
+
+                    var fileName = Path.GetFileName(file.FileName);
+
+                    var path = Path.Combine(Server.MapPath("~/App_Data/"), fileName);
+                    file.SaveAs(path);
+                }
+
+            }
+
         }
 
         // GET: Admin/Movies/Edit/5

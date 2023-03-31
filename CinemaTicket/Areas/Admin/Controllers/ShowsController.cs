@@ -24,7 +24,7 @@ namespace CinemaTicket.Areas.Admin.Controllers
         }
 
         // GET: Admin/Shows/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, string CinemaName, string MovieName, string ShowDay, string ShowTime)
         {
             if (id == null)
             {
@@ -35,8 +35,13 @@ namespace CinemaTicket.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CinemaName = CinemaName;
+            ViewBag.MovieName = MovieName;
+            ViewBag.ShowDay = ShowDay;
+            ViewBag.ShowTime = ShowTime;
             return View(show);
         }
+
 
         // GET: Admin/Shows/Create
         public ActionResult Create()

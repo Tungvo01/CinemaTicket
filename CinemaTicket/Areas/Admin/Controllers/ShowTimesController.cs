@@ -40,6 +40,7 @@ namespace CinemaTicket.Areas.Admin.Controllers
         // GET: Admin/ShowTimes/Create
         public ActionResult Create()
         {
+
             return View();
         }
 

@@ -5,50 +5,150 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Create</h2>
+<div class="page-header">
+    <h4 class="page-title"> Create </h4>
+</div>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Movies", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Movie</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.MovieName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.MovieName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MovieName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                @*<h4 class="card-title">Basic form elements</h4>
+                    <p class="card-description"> Basic form elements </p>*@
+                <form class="forms-sample">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group ">
+                        @*<label for="exampleInputName1">Name</label>*@
+                        @Html.LabelFor(model => model.MovieName, htmlAttributes: new { @class = "control-label" })
+                        @*<input type="text" class="form-control" id="exampleInputName1" placeholder="Name">*@
+                        @Html.EditorFor(model => model.MovieName, new { htmlAttributes = new { @placeholder = "Movie Name", @class = "form-control text-light" } })
+                        @Html.ValidationMessageFor(model => model.MovieName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @*<label for="exampleInputEmail3">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">*@
+                        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @type = "date", @placeholder = "Start Date", @class = "form-control text-light datepicker" } })
+                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control text-light" } })
+                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Poster upload</label>
+
+                        <div class="input-group col-xs-12">
+                            @Html.ValidationMessageFor(model => model.ImageURL, "", new { @class = "text-danger" })
+                            <span class="input-group-append">
+
+                                @Html.EditorFor(model => model.ImageURL, new { htmlAttributes = new { @class = "form-control", @type = "file", Name = "upload" } })
+                                @*<input type="file" id="Image" name="upload" />*@
+                                @Html.ValidationMessageFor(model => model.ImageURL, "", new { @class = "text-danger" })
+                            </span>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @*<label for="exampleTextarea1">Textarea</label>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>*@
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextAreaFor(model => model.Description, new { @placeholder = "Description", @class = "form-control text-light", @id = "exampleTextarea1", @col = "1000", @rows = "4" })
+                        @*@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @placeholder = "Description", @class = "form-control text-light" } })*@
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                    @*<button type="submit" class="btn btn-primary mr-2">Submit</button>*@
+
+                    <button type="submit" class="btn btn-primary mr-2">Save  </button>
+
+                    @*<button class="btn btn-dark">Cancel</button>*@
+
+                </form>
+            </div>
         </div>
     </div>
-</div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Back to List", "Index")*@
+    <a class="btn btn-primary  mr-2" href="@Url.Action("Index", "Movies")"><i class="mdi mdi-arrow-left"></i>Back</a>
 </div>
+
+@*@section upload
+    {
+       <script>
+            $(function () {
+                $('#btnUpload').click(function () {
+                    $('#fileUpload').trigger('click');
+                });
+            });
+            $('#fileUpload').change(function () {
+                if (window.FormData !== undefined) {
+                    var fileUpload = $('#fileUpload').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file', files[0]);
+
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: /*'..Movies/ProcessUpload'*/ '@Url.Action("ProcessUpload","Movies")',
+                            method: 'POST',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (urlImage) {
+                                /*$('#pictureUpload').attr('src', urlImage);*/
+                                $('#hinh').val(urlImage);
+                            },
+
+                            error: function (err) {
+
+                                alert('Lỗi không up được hình ', err.statusText);
+                            }
+                        });
+                }
+            });*@
+@*$(document).ready(function () {
+            $("#imageUploadForm").change(function () {
+                var formData = new FormData();
+                var totalFiles = document.getElementById("imageUploadForm").files.length;
+                for (var i = 0; i < totalFiles; i++) {
+                    var file = document.getElementById("imageUploadForm").files[i];
+                    formData.append("imageUploadForm", file);
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '/Movies/Upload',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false
+                    //success: function(response) {
+                    //    alert('succes!!');
+                    //},
+                    //error: function(error) {
+                    //    alert("errror");
+                    //}
+                }).done(function () {
+                    alert('success');
+                }.fail(function (xhr, status, errorThrown) {
+                    alert('fail');
+                };
+            });
+        });
+        </script>
+    }*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

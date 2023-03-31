@@ -1,0 +1,107 @@
+﻿
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+        <a class="sidebar-brand brand-logo" href="index.html"><img src="~/Content/assets/img/logoa.png" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="~/Content/assets/img/logo_mini.png" alt="logo" /></a>
+    </div>
+    <ul class="nav">
+
+        <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="@Url.Action("Index", "Movies")">
+                <span class="menu-icon">
+                    <i class="mdi mdi-movie"></i>
+                </span>
+                <span class="menu-title">Movie</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            @*<a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-laptop"></i>
+                    </span>
+                    <span class="menu-title">Basic UI Elements</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                    </ul>
+                </div>*@
+            @*<div class="nav-link">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-laptop"></i>
+                    </span>
+                    <span class="menu-title">@Html.ActionLink("Cinema", "Index", "Cinemas")</span>
+
+                </div>*@
+            <a class="nav-link" href="@Url.Action("Index", "Cinemas")">
+                <span class="menu-icon">
+                    <i class="mdi mdi-home-variant"></i>
+                </span>
+                <span class="menu-title">Cinema</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="@Url.Action("Index", "Celebrities")">
+                <span class="menu-icon">
+                    <i class="mdi mdi-human-greeting"></i>
+                </span>
+                <span class="menu-title">Celebrities</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="@Url.Action("Index", "ShowDays")">
+                <span class="menu-icon">
+                    <i class="mdi mdi-calendar-today"></i>
+                </span>
+                <span class="menu-title">Show Day</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="@Url.Action("Index", "ShowTimes")">
+                <span class="menu-icon">
+                    <i class="mdi mdi-clock"></i>
+                </span>
+                <span class="menu-title">Show Time</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="@Url.Action("Index", "Shows")">
+                <span class="menu-icon">
+                    <i class="mdi mdi-television"></i>
+                </span>
+                <span class="menu-title">Show</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="@Url.Action("Index", "Seats")">
+                <span class="menu-icon">
+                    <i class="mdi mdi-seat-recline-normal"></i>
+                </span>
+                <span class="menu-title">Seat</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="@Url.Action("Index", "News")">
+                <span class="menu-icon">
+                    <i class="mdi mdi-newspaper"></i>
+                </span>
+                <span class="menu-title">News</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="@Url.Action("Index", "Reservations")">
+                <span class="menu-icon">
+                    <i class="mdi mdi-ticket-confirmation"></i>
+                </span>
+                <span class="menu-title">Reservation</span>
+            </a>
+        </li>
+    </ul>
+</nav>

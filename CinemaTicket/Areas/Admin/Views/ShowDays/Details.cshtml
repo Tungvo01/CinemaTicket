@@ -5,23 +5,49 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+@*<h2>Details</h2>*@
+<div class="page-header">
+    <h4 class="page-title"> Detail </h4>
+</div>
+
+@*<div>
+        <h4>ShowDay</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Day)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Day)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ShowDayId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+
+            <form class="form-sample">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Day: </label>
+                            <label class="col-sm-9 form-control">@Html.DisplayFor(model => model.Day)</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div>
-    <h4>ShowDay</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Day)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Day)
-        </dd>
-
-    </dl>
+    <a class="btn btn-secondary  mr-2" href="@Url.Action("Edit", new { id = Model.ShowDayId })"><i class="mdi mdi-table-edit"></i>Edit</a>
+    <a class="btn btn-primary  mr-2" href="@Url.Action("Index")"><i class="mdi mdi-arrow-left"></i>Back</a>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ShowDayId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

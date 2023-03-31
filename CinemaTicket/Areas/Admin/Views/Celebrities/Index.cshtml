@@ -1,0 +1,117 @@
+﻿@model IEnumerable<CinemaTicket.Models.CinemaModels.Celebrity>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrlAvatar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrlAvatar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.CelebrityId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.CelebrityId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.CelebrityId })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+
+
+<div class="page-header">
+    <h4 class="page-title"> Celebrities </h4>
+    <div class="row float-sm-right">
+        <a class="btn btn-success mr-2" href="@Url.Action("Create", "Celebrities")">Add Celebrity</a>
+        @*<button type="submit" class="btn btn-primary mr-2">Add Movie</button>*@
+    </div>
+</div>
+<div class="navbar-nav w-100">
+    <div class="nav-item w-100">
+        <form class="input-group nav-link mt-2 mt-md-0  d-lg-flex search col-md-4 ">
+            <input type="search" class="form-control text-light" id="search" name="search" value="@ViewBag.Search" placeholder="Search celeb">
+            <span class="input-group-append">
+                <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify" width="40px"></i></button>
+            </span>
+        </form>
+    </div>
+</div>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form class="row forms-sample float-sm-right">
+                        <a class="btn bg-warning mr-2" href="@Url.Action("Edit", new { id = item.CelebrityId })">Edit</a>
+                        @*<button type="submit" class="btn bg-warning mr-2">Edit</button>*@
+                        @*<button class="btn bg-danger">Delete</button>*@
+                        <a class="btn bg-danger mr-2" href="@Url.Action("Delete", new { id = item.CelebrityId })">Delete</a>
+                    </form>
+                    <h4 class="card-title"><a class="text-white " href="@Url.Action("Details", new { id = item.CelebrityId })" alt="Detail">@Html.DisplayFor(modelItem => item.Name)</a></h4>
+                    @*<p class="card-description"> Votes </p>*@
+                    <div class="form-group">
+                        <img src="~/Images/@item.UrlAvatar" alt="cast" />
+                        @*<img src="~/Content/assets/img/cast/cast1.png" />*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dataTables').DataTable({
+            dom: 'Bfrtip',
+            button: [
+                'copy', 'csv', 'excel', 'print'
+            ]
+        });
+    })
+</script>

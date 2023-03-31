@@ -5,37 +5,84 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
+<div class="page-header">
+    <h4 class="page-title"> Edit </h4>
+</div>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Movie</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MovieId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MovieName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MovieName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MovieName, "", new { @class = "text-danger" })
+    @*<div class="form-horizontal">
+            <h4>Movie</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MovieId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MovieName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MovieName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MovieName, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>*@
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.MovieId)
+                    <div class="form-group">
+                        <label>Movie's Name</label>
+                        @Html.EditorFor(model => model.MovieName, new { htmlAttributes = new { @class = "form-control text-light" } })
+                        @Html.ValidationMessageFor(model => model.MovieName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control text-light" } })
+                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>End Date</label>
+                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control text-light" } })
+                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Upload file</label>
+                        <div class="input-group-append">
+                            @*<input type="file" id="imageUploadForm" name="image" multiple="multiple" />*@
+                            @using (Html.BeginForm("Upload", "Movies", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="file" name="file" />
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextAreaFor(model => model.Description, new { @placeholder = "Description", @class = "form-control text-light", @id = "exampleTextarea1", @rows = "4" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </form>
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+   
+    <a class="btn btn-primary  mr-2" href="@Url.Action("Index", "Movies")"><i class="mdi mdi-arrow-left"></i>Back</a>
 </div>
 
 @section Scripts {

@@ -17,14 +17,15 @@ namespace CinemaTicket.Areas.Admin.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Admin/News
-        public ActionResult Index()
+        public ActionResult Index(string searchNews)
         {
             var news = db.News.Include(n => n.Movie);
-            return View(news.ToList());
+            searchNews = searchNews + "";
+            return View(news.Where(row => row.Movie.MovieName.Contains(searchNews)).ToList());
         }
 
         // GET: Admin/News/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, string MovieName)
         {
             if (id == null)
             {
@@ -35,6 +36,7 @@ namespace CinemaTicket.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MovieName = MovieName;
             return View(news);
         }
 
@@ -76,6 +78,7 @@ namespace CinemaTicket.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.MovieId = new SelectList(db.Movies, "MovieId", "MovieName", news.MovieId);
+
             return View(news);
         }
 
@@ -97,7 +100,7 @@ namespace CinemaTicket.Areas.Admin.Controllers
         }
 
         // GET: Admin/News/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string MovieName)
         {
             if (id == null)
             {
@@ -108,6 +111,7 @@ namespace CinemaTicket.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MovieName = MovieName;
             return View(news);
         }
 

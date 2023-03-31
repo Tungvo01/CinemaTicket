@@ -1,6 +1,8 @@
 ﻿@*@model IEnumerable<CinemaTicket.Models.CinemaModels.Reservation>*@
+@*@model CinemaTicket.ViewModel.ReservationViewModel*@
 
 @{
+    int[] seats = new int[10];
     Layout = null;
     int k = 0;
 
@@ -245,13 +247,14 @@
                             for (var i = 0; i < activeElementsArray.length; i++) {
                                 var text = activeElementsArray[i].textContent;
                                 Ticket += text + ","
-                                
                             }
                             ticketnumber.textContent = Ticket
 
                             var price = document.getElementById("price")
                             price.textContent = (9 * activeElementsArray.length).toString() + "$";
                             @*@ViewBag.ShowTimes*@
+
+                            
                         }
 
 
@@ -265,15 +268,16 @@
                         <span>Selected</span>
                     </div>
                     <a href="#" class="theme-btn">previous</a>
-                    @Html.ActionLink("Newfsdfjjds", "a", "Reservations", new { seats = new[] { 1, 2 } }, null)
+                    @Html.ActionLink("Buy", "PaymentWithPaypal", "Reservations", new {@*seats = new[] { 1, 2 }*@}, null)
                     @*<a href="@Url.Action("a", "Reservations", new {seats = new[] { 1, 2}})" class="theme-btn">Next</a>*@
                 </div>
             </div>
             <div class="col-lg-3 offset-lg-1">
                 <div class="buy-ticket-box mtr-30">
                     <h4>Your Information</h4>
-                    @Html.DropDownList("ShowId", null, htmlAttributes: new { @class = "form-control", @onchange = "showChanged(this.value)" })
-
+                    @*@Html.DropDownList("ShowId", null, htmlAttributes: new { @class = "form-control", @onchange = "showChanged(this.value)" })*@
+                    @*@Html.DropDownListFor("", ViewBag.Reservations as SelectList, "-- Select Reservation --", new { @class = "form-control", @onchange = "showChanged(this.value)" })*@
+                    @Html.DropDownList("ShowId", new SelectList(ViewBag.Re), "-- Select Shows --", new { @class = "form-control", @onchange = "showChanged(this.value)" })
                     <script language="javascript">
 
                                 function showChanged(value) {
@@ -322,7 +326,7 @@
                             <span>@ViewBag.Movie.MovieName</span>
                         </li>
                         <li>
-                            <p >Ticket number</p>
+                            <p>Ticket number</p>
                             <span id="ticketnumber"></span>
                         </li>
                         <li>
