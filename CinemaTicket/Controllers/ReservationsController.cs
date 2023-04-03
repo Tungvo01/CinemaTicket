@@ -1,6 +1,7 @@
 ﻿using CinemaTicket.Models;
 using CinemaTicket.Models.CinemaModels;
 using CinemaTicket.ViewModel;
+using Newtonsoft.Json;
 using PayPal.Api;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,11 @@ namespace CinemaTicket.Controllers
         private ApplicationDbContext db;
         public ReservationsController()
         {
+
             db = new ApplicationDbContext();
         }
 
-       
+
 
         // GET: Reservations
         //public ActionResult Index(int MovieId)
@@ -87,9 +89,9 @@ namespace CinemaTicket.Controllers
             //ViewBag.Reservations = new SelectList(reservationIds, "ReservationId", "ReservationId");
             //ViewBag.ShowId = new SelectList(reservationIds, "ShowId", "ShowId");
             //ViewBag.ShowId = new SelectList(db.Shows.Where(p=>p.MovieId == MovieId), "ShowId", "ShowId");
-     
 
-            ViewBag.ReservationId = db.Reservations.Where(c=>c.ShowId == ShowId).ToList();
+
+            ViewBag.ReservationId = db.Reservations.Where(c => c.ShowId == ShowId).ToList();
             //day movie
             var ShowDays = db.ShowDays
                 .Join(db.Shows,
@@ -100,7 +102,7 @@ namespace CinemaTicket.Controllers
                 .Select(x => x.ShowDays.Day).ToList();
             ViewBag.ShowDays = ShowDays;
 
-         //show time
+            //show time
             var ShowTimes = db.ShowTimes
                .Join(db.Shows,
                    sh => sh.ShowTimeId,
@@ -141,31 +143,20 @@ namespace CinemaTicket.Controllers
         }
 
 
-        public ActionResult a(int[] seats)
+        public ActionResult a(string datveJson)
         {
-            //int[] b = { 1, 2 };
-            //for( int i = 0; i < b.Length; i++)
-            //{
-                var status = (from r in db.Reservations
-                              join s in db.Seats on r.SeatId equals s.SeatId
-                              where r.SeatId == 1
-                              select s.Status).FirstOrDefault();
-
-                //status. = true;
-                //db.SaveChanges();
-            //}
-
-            //select s.Status from reservations r, Seats s where r.SeatId = s.SeatId and r.SeatId = 2 and r.ReservationId ==??
+            datve book = JsonConvert.DeserializeObject<datve>(datveJson);
 
 
-            //db.Movies.Add(movie);???? s.Status = true;
-            //db.SaveChanges();
-
-            return View();
+            return View(book);
         }
         public ActionResult ngon()
         {
+            //lughe vao db
+            //
+            //savechanes
             
+
             return View();
         }
 
@@ -175,8 +166,12 @@ namespace CinemaTicket.Controllers
             return View();
         }
 
-        public ActionResult PaymentWithPaypal(string Cancel = null)
+        public ActionResult PaymentWithPaypal(string datveJson, string price,string Cancel = null)
         {
+            //if (datve is null)
+            //{
+            //    throw new ArgumentNullException(nameof(datve));
+            //}
             //getting the apiContext  
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
             try
@@ -196,7 +191,7 @@ namespace CinemaTicket.Controllers
                     var guid = Convert.ToString((new Random()).Next(100000));
                     //CreatePayment function gives us the payment approval url  
                     //on which payer is redirected for paypal account payment  
-                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid);
+                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, datveJson, price);
                     //get links returned from paypal in response to Create function call  
                     var links = createdPayment.links.GetEnumerator();
                     string paypalRedirectUrl = null;
@@ -245,8 +240,9 @@ namespace CinemaTicket.Controllers
             };
             return this.payment.Execute(apiContext, paymentExecution);
         }
-        private Payment CreatePayment(APIContext apiContext, string redirectUrl)
+        private Payment CreatePayment(APIContext apiContext, string redirectUrl, string datveJson, string price)
         {
+            datve datve = JsonConvert.DeserializeObject<datve>(datveJson);
             //create itemlist and add item objects to it  
             var itemList = new ItemList()
             {
@@ -255,12 +251,14 @@ namespace CinemaTicket.Controllers
             //Adding Item Details like name, currency, price etc  
             itemList.items.Add(new Item()
             {
-                name = "Item Name comes here",
+                name = datve.MovieName,
                 currency = "USD",
-                price = "1",
+                price = price,
                 quantity = "1",
                 sku = "sku"
             });
+
+
             var payer = new Payer()
             {
                 payment_method = "paypal"
@@ -282,14 +280,14 @@ namespace CinemaTicket.Controllers
             var amount = new Amount()
             {
                 currency = "USD",
-                total = "1" // Total must be equal to sum of tax, shipping and subtotal.  
+                total = price // Total must be equal to sum of tax, shipping and subtotal.  
                 //details = details
             };
             var transactionList = new List<Transaction>();
             // Adding description about the transaction  
             transactionList.Add(new Transaction()
             {
-                description = "Transaction description",
+                description = "",
                 invoice_number = Guid.NewGuid().ToString(), //Generate an Invoice No  
                 amount = amount,
                 item_list = itemList

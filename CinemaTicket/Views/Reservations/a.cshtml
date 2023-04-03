@@ -1,4 +1,4 @@
-﻿
+﻿@model CinemaTicket.Models.datve
 @{
     Layout = null;
 }
@@ -11,9 +11,14 @@
     <title>a</title>
 </head>
 <body>
-    <div> 
+    <div>
         xog
         xog
+        <p>@Model.MovieName</p>
+        <p>@Model.Day</p>
+        <p>@Model.Time</p>
+        <p>@Model.Location</p>
+
     </div>
 </body>
 </html>

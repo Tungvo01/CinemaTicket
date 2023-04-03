@@ -1,7 +1,33 @@
 ﻿@*@model IEnumerable<CinemaTicket.Models.CinemaModels.Reservation>*@
 @*@model CinemaTicket.ViewModel.ReservationViewModel*@
+@using CinemaTicket.Models;
+@using Newtonsoft.Json;
+@using HtmlAgilityPack;
+
 
 @{
+
+    // ...
+    var datve = new datve();
+    datve.MovieName = ViewBag.Movie.MovieName;
+    foreach (var item in ViewBag.ShowTimes)
+    {
+        datve.Time = item.ToString();
+
+    }
+    foreach (var item in ViewBag.ShowDays)
+    {
+        datve.Day = item.ToString("dd/MM/yyyy");
+
+    }
+
+    //datve datve = new datve();
+
+
+    datve.Seat = Session["ticketnumber"] as string;
+
+    var datveJson = JsonConvert.SerializeObject(datve);
+
     int[] seats = new int[10];
     Layout = null;
     int k = 0;
@@ -253,12 +279,47 @@
                             var price = document.getElementById("price")
                             price.textContent = (9 * activeElementsArray.length).toString() + "$";
                             @*@ViewBag.ShowTimes*@
+                            var pri = (9 * activeElementsArray.length).toString();
 
-                            
+                                     @*@datve.Price = pri*@
+                            /* document.cookie = 'price=' + pri, "ticketnumber=" + Ticket;*/
+                            document.cookie = 'price =' + pri
+                                sessionStorage.setItem('price', pri)
+                                sessionStorage.setItem('ticketnumber', Ticket);
+
                         }
-
-
                     </script>
+                    @*@{
+                            var doc = new HtmlAgilityPack.HtmlDocument();
+
+                            // Load the HTML content from the current view
+                            var viewContent = new System.IO.StringWriter();
+                            var response = HttpContext.Current.Response;
+                            var oldOutput = response.Output;
+                            response.Output = viewContent;
+                            ViewContext.View.Render(ViewContext, viewContent);
+                            response.Output = oldOutput;
+                            doc.LoadHtml(viewContent.ToString());
+
+                            // Get the content element
+                            var contentNode = doc.DocumentNode.SelectSingleNode("//*[@id=\"price\"]");
+
+                            // Get the content text
+                            var content = contentNode.InnerText;
+
+                            // Get the content element
+
+
+
+                            datve.Price = contentNode.InnerText;
+
+
+                            //datve.Price = Session["price"] as string;
+
+
+
+                        }*@
+
                     <div class="ticket-box-available">
                         <input type="checkbox">
                         <span>Available</span>
@@ -268,7 +329,12 @@
                         <span>Selected</span>
                     </div>
                     <a href="#" class="theme-btn">previous</a>
-                    @Html.ActionLink("Buy", "PaymentWithPaypal", "Reservations", new {@*seats = new[] { 1, 2 }*@}, null)
+                    @{
+                        var price = (Request.Cookies["price"] != null && !string.IsNullOrEmpty(Request.Cookies["price"].Value) ? Convert.ToString(Request.Cookies["price"].Value) : "0");
+                    }
+                    @Html.ActionLink("Buy", "PaymentWithPaypal", "Reservations", new { datveJson = datveJson, price = price }, null)
+
+
                     @*<a href="@Url.Action("a", "Reservations", new {seats = new[] { 1, 2}})" class="theme-btn">Next</a>*@
                 </div>
             </div>
@@ -285,7 +351,7 @@
                                     var id = @ViewBag.Movie.MovieId
 
                                         window.location.href = "/Reservations/ChooseShow?MovieId=" + id + "&ShowId=" + value;
-
+                                    
                                 }
 
                     </script>
@@ -327,18 +393,23 @@
                         </li>
                         <li>
                             <p>Ticket number</p>
-                            <span id="ticketnumber"></span>
+                            <span id="ticketnumber">546</span>
                         </li>
                         <li>
                             <p>Price</p>
-                            <span id="price"></span>
+                            <span id="price">8</span>
+                            <p>@(Request.Cookies["price"] != null && !string.IsNullOrEmpty(Request.Cookies["price"].Value) ? Convert.ToString(Request.Cookies["price"].Value) : "Default Value")</p>
                         </li>
+
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+    @{
 
+
+    }
 
     <!-- jquery main JS -->
     <!--<script src="~/Content/assets/js/jquery.min.js"></script>-->
