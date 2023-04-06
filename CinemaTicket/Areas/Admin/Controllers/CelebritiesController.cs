@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using CinemaTicket.Models;
 using CinemaTicket.Models.CinemaModels;
+using PagedList;
 
 namespace CinemaTicket.Areas.Admin.Controllers
 {
@@ -17,9 +18,27 @@ namespace CinemaTicket.Areas.Admin.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Admin/Celebrities
-        public ActionResult Index()
+        public ActionResult Index(int? page, string SearchString = "")
         {
-            return View(db.Celebrities.ToList());
+
+            if (page == null) page = 1;
+
+
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            if (SearchString != "")
+            {
+                var Movies = db.Celebrities.Where(x => x.Name.ToUpper().Contains(SearchString.ToUpper())).OrderBy(x => x.CelebrityId);
+                return View(Movies.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                var Movies = (from l in db.Celebrities select l).OrderBy(x => x.CelebrityId);
+                return View(Movies.ToPagedList(pageNumber, pageSize));
+
+            }
+
+            //return View(db.Celebrities.ToList());
         }
 
         // GET: Admin/Celebrities/Details/5
@@ -57,7 +76,7 @@ namespace CinemaTicket.Areas.Admin.Controllers
                 {
 
                     string fileName = Path.GetFileName(file.FileName);
-                    string path = Path.Combine(Server.MapPath("~/Images"), fileName);
+                    string path = Path.Combine(Server.MapPath("~/Content/assets/img"), fileName);
 
                     file.SaveAs(path);
                     celebrity.UrlAvatar = fileName;
@@ -99,7 +118,7 @@ namespace CinemaTicket.Areas.Admin.Controllers
                 {
 
                     string fileName = Path.GetFileName(file.FileName);
-                    string path = Path.Combine(Server.MapPath("~/Images"), fileName);
+                    string path = Path.Combine(Server.MapPath("~/Content/assets/img"), fileName);
 
                     file.SaveAs(path);
                     celebrity.UrlAvatar = fileName;

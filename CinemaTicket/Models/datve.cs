@@ -17,8 +17,10 @@ namespace CinemaTicket.Models
 
         public string Seat { get; set; }
 
+        public string ShowId { get; set; }
 
-       
+
+
 
 
 

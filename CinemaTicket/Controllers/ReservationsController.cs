@@ -1,6 +1,7 @@
 ﻿using CinemaTicket.Models;
 using CinemaTicket.Models.CinemaModels;
 using CinemaTicket.ViewModel;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using PayPal.Api;
 using System;
@@ -131,12 +132,12 @@ namespace CinemaTicket.Controllers
 
             ViewBag.SeatIds = seatIds;
 
-
+            ViewBag.ShowId = ShowId.ToString();
 
             //ViewBag.statusList = statusList;
             //status = true;
             //db.SaveChanges();
-            Session["UserName"] = "John";
+
 
 
             return View(db.Reservations.Where(c => c.ShowId == ShowId).ToList());
@@ -165,9 +166,32 @@ namespace CinemaTicket.Controllers
 
             return View();
         }
-
-        public ActionResult PaymentWithPaypal(string datveJson, string price,string Cancel = null)
+        public ActionResult success(string seats)
         {
+
+            return View();
+        }
+
+        public ActionResult PaymentWithPaypal(string datveJson, string price, string seats,string Cancel = null)
+        {
+            if(datveJson != null)
+            {
+                string[] arr = seats.Split(' ');
+                datve datve = JsonConvert.DeserializeObject<datve>(datveJson);
+                Reservation r;
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    r = new Reservation();
+
+                    r.CustomerId = User.Identity.GetUserId();
+                    r.SeatId = Int32.Parse(arr[i]);
+                    r.ShowId = Int32.Parse(datve.ShowId);
+                    db.Reservations.Add(r);
+                    db.SaveChanges();
+                }
+            }
+           
+
             //if (datve is null)
             //{
             //    throw new ArgumentNullException(nameof(datve));
@@ -225,6 +249,8 @@ namespace CinemaTicket.Controllers
                 return View("kongon");
             }
             //on successful payment, show success page to user.  
+          
+           
             return View("ngon");
         }
         private PayPal.Api.Payment payment;

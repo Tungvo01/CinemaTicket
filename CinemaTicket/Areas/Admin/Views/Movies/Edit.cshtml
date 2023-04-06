@@ -10,7 +10,7 @@
 </div>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Movies", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -60,11 +60,16 @@
                         <label>Upload file</label>
                         <div class="input-group-append">
                             @*<input type="file" id="imageUploadForm" name="image" multiple="multiple" />*@
-                            @using (Html.BeginForm("Upload", "Movies", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {
-                                <input type="file" name="file" />
-                            }
+                            @*@using (Html.BeginForm("Upload", "Movies", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <input type="file" name="file" />
+                                }*@
+                            @Html.EditorFor(model => model.ImageURL, new { htmlAttributes = new { @class = "form-control", @type = "file", Name = "upload" } })
+
+                            @Html.ValidationMessageFor(model => model.ImageURL, "", new { @class = "text-danger" })
                         </div>
+                        <img src="~/Content/assets/img/@Model.ImageURL" width="100" />
+                        @Html.HiddenFor(model => model.ImageURL)
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
@@ -81,7 +86,7 @@
 }
 
 <div>
-   
+
     <a class="btn btn-primary  mr-2" href="@Url.Action("Index", "Movies")"><i class="mdi mdi-arrow-left"></i>Back</a>
 </div>
 

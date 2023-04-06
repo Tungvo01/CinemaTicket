@@ -191,6 +191,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CelebritiesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CinemasController.cs" />
     <Compile Include="Areas\Admin\Controllers\MoviesController.cs" />
@@ -1055,6 +1056,7 @@
     <Content Include="Content\assets\css\magnific-popup.css" />
     <Content Include="Content\assets\css\owl.carousel.css" />
     <Content Include="Content\assets\css\owl.video.play.html" />
+    <Content Include="Content\assets\css\profile.css" />
     <Content Include="Content\assets\css\register.css" />
     <Content Include="Content\assets\css\responsive.css" />
     <Content Include="Content\assets\css\slicknav.min.css" />
@@ -1370,6 +1372,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

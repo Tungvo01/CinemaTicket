@@ -20,6 +20,11 @@
         datve.Day = item.ToString("dd/MM/yyyy");
 
     }
+    foreach (var item in ViewBag.ShowId)
+    {
+        datve.ShowId = item.ToString();
+
+    }
 
     //datve datve = new datve();
 
@@ -28,7 +33,7 @@
 
     var datveJson = JsonConvert.SerializeObject(datve);
 
-    int[] seats = new int[10];
+   
     Layout = null;
     int k = 0;
 
@@ -82,8 +87,8 @@
             <div class="col-lg-8">
                 <div class="buy-ticket-box">
                     <h4>Buy Tickets</h4>
-                    <h5>Seat</h5>
-                    <h6>Screen</h6>
+                    <h5 style="color: #fff;">Seat</h5>
+                    <h6 style="color: #fff;">Screen</h6>
                     <div class="ticket-box-table">
                         <table class="ticket-table-seat">
                             <tbody>
@@ -120,29 +125,94 @@
                                 </tr>
 
                                 <tr>
-                                    @for (int i = 8; i <= 14; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 8; i <= 14; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
+                                    }
+
+
+
+                                </tr>
+                                <tr>
+                                    @{
+                                        for (int i = 15; i <= 21; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
 
                                 </tr>
                                 <tr>
-                                    @for (int i = 15; i <= 21; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 22; i <= 28; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
+
                                 </tr>
                                 <tr>
-                                    @for (int i = 22; i <= 28; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 29; i <= 35; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
-                                </tr>
-                                <tr>
-                                    @for (int i = 29; i <= 35; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
-                                    }
+
                                 </tr>
                             </tbody>
                         </table>
@@ -168,35 +238,115 @@
                         <table class="ticket-table-seat">
                             <tbody>
                                 <tr>
-                                    @for (int i = 36; i <= 43; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 36; i <= 43; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
-                                </tr>
+
                                 <tr>
-                                    @for (int i = 44; i <= 51; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 44; i <= 51; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
+
+
                                 </tr>
                                 <tr>
 
-                                    @for (int i = 52; i <= 59; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 52; i <= 59; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
+
                                 </tr>
                                 <tr>
-                                    @for (int i = 60; i <= 67; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 60; i <= 67; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
+
                                 </tr>
                                 <tr>
-                                    @for (int i = 68; i <= 75; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 68; i <= 75; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
+
                                 </tr>
                             </tbody>
                         </table>
@@ -222,34 +372,116 @@
                         <table class="ticket-table-seat">
                             <tbody>
                                 <tr>
-                                    @for (int i = 76; i <= 83; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 76; i <= 82; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
+
                                 </tr>
                                 <tr>
-                                    @for (int i = 84; i <= 91; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 83; i <= 89; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
+
                                 </tr>
                                 <tr>
-                                    @for (int i = 92; i <= 99; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 90; i <= 96; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
+
                                 </tr>
                                 <tr>
-                                    @for (int i = 100; i <= 107; i++)
-                                    {
-                                        <td class="seatNo {@i}" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 97; i <= 103; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
+
+
                                 </tr>
                                 <tr>
-                                    @for (int i = 108; i <= 115; i++)
-                                    {
-                                        <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                    @{
+                                        for (int i = 104; i <= 110; i++)
+                                        {
+
+                                            int element = ((IEnumerable<int>)ViewBag.SeatIds).ElementAtOrDefault(k);
+
+
+                                            if (element == i)
+                                            {
+                                                k++;
+                                                <td class="seatNo" style="background: blue;">@i</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="seatNo" onclick="handleClick(@i)">@i</td>
+                                            }
+
+                                        }
                                     }
+
+
                                 </tr>
                             </tbody>
                         </table>
@@ -272,7 +504,7 @@
                             var Ticket = "";
                             for (var i = 0; i < activeElementsArray.length; i++) {
                                 var text = activeElementsArray[i].textContent;
-                                Ticket += text + ","
+                                Ticket += text + " "
                             }
                             ticketnumber.textContent = Ticket
 
@@ -285,7 +517,7 @@
                             /* document.cookie = 'price=' + pri, "ticketnumber=" + Ticket;*/
                             document.cookie = 'price =' + pri
                                 sessionStorage.setItem('price', pri)
-                                sessionStorage.setItem('ticketnumber', Ticket);
+                            document.cookie='ticketnumber ='+ Ticket;
 
                         }
                     </script>
@@ -323,7 +555,7 @@
                     <div class="ticket-box-available">
                         <input type="checkbox">
                         <span>Available</span>
-                        <input type="checkbox" checked="">
+                        <input type="checkbox">
                         <span>Unavailable</span>
                         <input type="checkbox">
                         <span>Selected</span>
@@ -331,8 +563,9 @@
                     <a href="#" class="theme-btn">previous</a>
                     @{
                         var price = (Request.Cookies["price"] != null && !string.IsNullOrEmpty(Request.Cookies["price"].Value) ? Convert.ToString(Request.Cookies["price"].Value) : "0");
+                        var seats = (Request.Cookies["ticketnumber"] != null && !string.IsNullOrEmpty(Request.Cookies["ticketnumber"].Value) ? Convert.ToString(Request.Cookies["ticketnumber"].Value) : "0");
                     }
-                    @Html.ActionLink("Buy", "PaymentWithPaypal", "Reservations", new { datveJson = datveJson, price = price }, null)
+                    @Html.ActionLink("Buy", "PaymentWithPaypal", "Reservations", new { datveJson = datveJson, price = price, seats = seats }, null)
 
 
                     @*<a href="@Url.Action("a", "Reservations", new {seats = new[] { 1, 2}})" class="theme-btn">Next</a>*@
@@ -351,7 +584,7 @@
                                     var id = @ViewBag.Movie.MovieId
 
                                         window.location.href = "/Reservations/ChooseShow?MovieId=" + id + "&ShowId=" + value;
-                                    
+
                                 }
 
                     </script>
@@ -393,12 +626,11 @@
                         </li>
                         <li>
                             <p>Ticket number</p>
-                            <span id="ticketnumber">546</span>
+                            <span id="ticketnumber"></span>
                         </li>
                         <li>
                             <p>Price</p>
-                            <span id="price">8</span>
-                            <p>@(Request.Cookies["price"] != null && !string.IsNullOrEmpty(Request.Cookies["price"].Value) ? Convert.ToString(Request.Cookies["price"].Value) : "Default Value")</p>
+                            <span id="price"></span>
                         </li>
 
                     </ul>

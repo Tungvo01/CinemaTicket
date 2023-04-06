@@ -31,7 +31,7 @@
             <form class="form-sample">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="~/Content/assets/img/portfolio/@Model.ImageURL" alt="Hinh" />
+                        <img src="~/Content/assets/img/@Model.ImageURL" alt="Hinh" width="80%" />
                     </div>
                     <div class="col-md-8 ">
                         <div class=" form-group row">
@@ -56,9 +56,9 @@
 </div>
 
 @*<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MovieId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MovieId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
 <div>
     <a class="btn btn-secondary  mr-2" href="@Url.Action("Edit", new { id = Model.MovieId })"><i class="mdi mdi-table-edit"></i>Edit</a>
     <a class="btn btn-primary  mr-2" href="@Url.Action("Index", "Movies")"><i class="mdi mdi-arrow-left"></i>Back</a>

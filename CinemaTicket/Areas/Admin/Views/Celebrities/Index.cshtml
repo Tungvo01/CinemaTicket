@@ -1,4 +1,5 @@
-﻿@model IEnumerable<CinemaTicket.Models.CinemaModels.Celebrity>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<CinemaTicket.Models.CinemaModels.Celebrity>
 
 @{
     ViewBag.Title = "Index";
@@ -74,10 +75,13 @@
 <div class="navbar-nav w-100">
     <div class="nav-item w-100">
         <form class="input-group nav-link mt-2 mt-md-0  d-lg-flex search col-md-4 ">
-            <input type="search" class="form-control text-light" id="search" name="search" value="@ViewBag.Search" placeholder="Search celeb">
-            <span class="input-group-append">
-                <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify" width="40px"></i></button>
-            </span>
+            @using (Html.BeginForm())
+            {
+                <input type="search" class="form-control text-light" id="SearchString" name="SearchString" placeholder="Search celeb">
+                <span class="input-group-append">
+                    <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify" width="40px"></i></button>
+                </span>
+            }
         </form>
     </div>
 </div>
@@ -95,8 +99,8 @@
                     </form>
                     <h4 class="card-title"><a class="text-white " href="@Url.Action("Details", new { id = item.CelebrityId })" alt="Detail">@Html.DisplayFor(modelItem => item.Name)</a></h4>
                     @*<p class="card-description"> Votes </p>*@
-                    <div class="form-group">
-                        <img src="~/Images/@item.UrlAvatar" alt="cast" />
+                    <div class="form-group full-width">
+                        <img src="~/Content/assets/img/@item.UrlAvatar" alt="cast" width="100%" />
                         @*<img src="~/Content/assets/img/cast/cast1.png" />*@
                     </div>
                 </div>
@@ -104,14 +108,64 @@
         </div>
     }
 </div>
+<div>
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+    <div @*class="MenuTrang"*@>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+</div>
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $('#dataTables').DataTable({
+                dom: 'Bfrtip',
+                button: [
+                    'copy', 'csv', 'excel', 'print'
+                ]
+            });
+        })
+    </script>*@
+<style>
 
-<script type="text/javascript">
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+<style type="text/css">
+    #mau-nut a {
+        clear: both;
+        background-color: cornflowerblue;
+        color: snow;
+    }
+
+        #mau-nut a:hover {
+            background-color: red;
+            color: snow;
+        }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
     $(document).ready(function () {
-        $('#dataTables').DataTable({
-            dom: 'Bfrtip',
-            button: [
-                'copy', 'csv', 'excel', 'print'
-            ]
+        var maxLength = 100;
+        $(".show-read-more").each(function () {
+            var myStr = $(this).text();
+            if ($.trim(myStr).length > maxLength) {
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                $(this).empty().html(newStr);
+                $(this).append(' <a href="javascript:void(0);" class="read-more">đọctiếp...</a > ');
+                $(this).append('<span class="more-text">' + removedStr + '</span>');
+            }
         });
-    })
+        $(".read-more").click(function () {
+            $(this).siblings(".more-text").contents().unwrap();
+            $(this).remove();
+        });
+    });
 </script>
+<style>
+    .show-read-more .more-text {
+        display: none;
+    }
+</style>

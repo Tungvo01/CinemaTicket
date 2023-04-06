@@ -39,9 +39,9 @@ namespace CinemaTicket.Areas.Admin.Controllers
 
             }
 
-          
+
             //ViewBag.Search = searchMovie;
-           
+
         }
 
         // GET: Admin/Movies/Details/5
@@ -72,12 +72,8 @@ namespace CinemaTicket.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MovieId,MovieName,Description,ImageURL,StartDate,EndDate")] Movie movie)
         {
-
-
-
-
             //End Upload
-            
+
 
             if (ModelState.IsValid)
             {
@@ -85,7 +81,7 @@ namespace CinemaTicket.Areas.Admin.Controllers
                 HttpPostedFileBase file = Request.Files["upload"];
                 if (file != null && file.ContentLength > 0)
                 {
-                          
+
 
                     string fileName = Path.GetFileName(file.FileName);
                     string path = Path.Combine(Server.MapPath("~/Content/assets/img"), fileName);
@@ -116,37 +112,7 @@ namespace CinemaTicket.Areas.Admin.Controllers
             return View(movie);
         }
 
-        //Upload Img
-        [HttpPost]
-        public string ProcessUpload(HttpPostedFileBase file)
-        {
-            if (file == null && file.ContentLength > 0)
-            {
-                return "";
-            }
-            file.SaveAs(Server.MapPath("~/Content/assets/img/portfolio/" + file.FileName));
-            return "/Content/assets/img/portfolio/" + file.FileName;
-        }
 
-        [HttpPost]
-        public void Upload()
-        {
-
-            if (Request.Files.Count != 0)
-            {
-                for (int i = 0; i < Request.Files.Count; i++)
-                {
-                    var file = Request.Files[i];
-
-                    var fileName = Path.GetFileName(file.FileName);
-
-                    var path = Path.Combine(Server.MapPath("~/App_Data/"), fileName);
-                    file.SaveAs(path);
-                }
-
-            }
-
-        }
 
         // GET: Admin/Movies/Edit/5
         public ActionResult Edit(int? id)
@@ -168,13 +134,31 @@ namespace CinemaTicket.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MovieId,MovieName")] Movie movie)
+        public ActionResult Edit([Bind(Include = "MovieId,MovieName,Description,ImageURL,StartDate,EndDate")] Movie movie)
         {
             if (ModelState.IsValid)
             {
+                HttpPostedFileBase file = Request.Files["upload"];
+                if (file != null && file.ContentLength > 0)
+                {
+
+                    string fileName = Path.GetFileName(file.FileName);
+                    string path = Path.Combine(Server.MapPath("~/Content/assets/img"), fileName);
+
+                    file.SaveAs(path);
+                    movie.ImageURL = fileName;
+                }
                 db.Entry(movie).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                if (db.SaveChanges() > 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Không lưu đươc!");
+                    return RedirectToAction("Index");
+                }
             }
             return View(movie);
         }

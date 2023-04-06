@@ -30,12 +30,12 @@
 
                     <div class="field input-field">
                         @*<input type="email" placeholder="Username" class="input">*@
-                        @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email" });
+                        @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email" })
                     </div>
                     <div class="field input-field">
                         @*<input type="password" placeholder="Password" class="password">*@
                         <!--<i class='bx bx-hide eye-icon'></i>-->
-                        @Html.PasswordFor(m => m.Password, new { @placeholder = "Password" });
+                        @Html.PasswordFor(m => m.Password, new { @placeholder = "Password" })
 
                     </div>
                     <div class="form-link">
@@ -48,7 +48,7 @@
                 }
 
                 <div class="field button-field">
-                    <button> <a href="@Url.Action("Register", "Account")">SIGN UP</a></button>
+                    <button> <a style="color: #fff;" href="@Url.Action("Register", "Account")">SIGN UP</a></button>
                 </div>
             </div>
 
