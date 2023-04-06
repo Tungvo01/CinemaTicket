@@ -25,6 +25,11 @@
         datve.ShowId = item.ToString();
 
     }
+    foreach (var item in ViewBag.Cimemas)
+    {
+        datve.Location = item.ToString();
+
+    }
 
     //datve datve = new datve();
 
@@ -33,7 +38,7 @@
 
     var datveJson = JsonConvert.SerializeObject(datve);
 
-   
+
     Layout = null;
     int k = 0;
 

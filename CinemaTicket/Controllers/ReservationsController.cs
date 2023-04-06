@@ -4,14 +4,20 @@ using CinemaTicket.ViewModel;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using PayPal.Api;
+using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using CinemaTicket.common;
+using MailHelper = CinemaTicket.common.MailHelper;
 
 namespace CinemaTicket.Controllers
 {
@@ -189,6 +195,28 @@ namespace CinemaTicket.Controllers
                     db.Reservations.Add(r);
                     db.SaveChanges();
                 }
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/content/template/neworder.html"));
+
+                content = content.Replace("{{CustomerName}}", User.Identity.Name);
+                content = content.Replace("{{MovieName}}", datve.MovieName);
+                content = content.Replace("{{Seats}}", datve.Seat);
+                content = content.Replace("{{Cinema}}", datve.Location);
+                content = content.Replace("{{Day}}", datve.Day);
+                content = content.Replace("{{Time}}", datve.Time);
+                content = content.Replace("{{Email}}", User.Identity.GetUserName());
+                content = content.Replace("{{Total}}", price.ToString());
+                content = content.Replace("{{Quantity}}", arr.Length.ToString());
+                var toEmail = "sendcodetw@gmail.com";
+
+                // Để Gmail cho phép SmtpClient kết nối đến server SMTP của nó với xác thực 
+                //là tài khoản gmail của bạn, bạn cần thiết lập tài khoản email của bạn như sau:
+                //Vào địa chỉ https://myaccount.google.com/security  Ở menu trái chọn mục Bảo mật, sau đó tại mục Quyền truy cập 
+                //của ứng dụng kém an toàn phải ở chế độ bật
+                //  Đồng thời tài khoản Gmail cũng cần bật IMAP
+                //Truy cập địa chỉ https://mail.google.com/mail/#settings/fwdandpop
+
+                new MailHelper().SendMail(User.Identity.GetUserName(), "Đơn hàng mới từ MovieTicket", content);
+                new MailHelper().SendMail(toEmail, "Đơn hàng mới từ MovieTicket", content);
             }
            
 
