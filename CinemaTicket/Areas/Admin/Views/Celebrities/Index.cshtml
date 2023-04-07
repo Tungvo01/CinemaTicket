@@ -73,7 +73,7 @@
     </div>
 </div>
 <div class="navbar-nav w-100">
-    <div class="nav-item w-100">
+    <div class="nav-item w-100 page-header">
         <form class="input-group nav-link mt-2 mt-md-0  d-lg-flex search col-md-4 ">
             @using (Html.BeginForm())
             {
@@ -83,6 +83,9 @@
                 </span>
             }
         </form>
+        <div class="row float-sm-right">
+            <a class="btn btn-info mr-2" href="@Url.Action("ExportToExcel", "Celebrities")">Export To Excel</a>
+        </div>
     </div>
 </div>
 <div class="row">
@@ -108,6 +111,7 @@
         </div>
     }
 </div>
+
 <div>
     <div>
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount

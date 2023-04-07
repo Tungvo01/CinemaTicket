@@ -9,10 +9,13 @@ using System.Web;
 using System.Web.Mvc;
 using CinemaTicket.Models;
 using CinemaTicket.Models.CinemaModels;
+using OfficeOpenXml;
 using PagedList;
 
 namespace CinemaTicket.Areas.Admin.Controllers
 {
+    [Authorize(Users = "admin@gmail.com")]
+
     public class CelebritiesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -60,6 +63,50 @@ namespace CinemaTicket.Areas.Admin.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+        public void ExportToExcel()
+        {
+            List<Celebrity> listCelebrities = db.Celebrities.ToList();
+
+            ExcelPackage pck = new ExcelPackage();
+            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
+
+            ws.Cells["A1"].Value = "CELEBRITY TABLE WORKSHEET";
+
+            ws.Cells["A2"].Value = "Date";
+            ws.Cells["B2"].Value = string.Format("{0:dd MMMM yyyy} at {0:H:mm tt}", DateTimeOffset.Now);
+
+            ws.Cells["A3"].Value = "Author";
+            ws.Cells["B3"].Value = User.Identity.Name;
+
+
+            ws.Cells["A6"].Value = "CelebrityId";
+            ws.Cells["B6"].Value = "CelebrityName";
+            ws.Cells["C6"].Value = "Height";
+            ws.Cells["D6"].Value = "Weight";
+            ws.Cells["E6"].Value = "Avatar";
+            ws.Cells["F6"].Value = "Description";
+            ws.Cells["G6"].Value = "Language";
+
+            int rowStart = 7;
+            foreach (var item in listCelebrities)
+            {
+                ws.Cells[string.Format("A{0}", rowStart)].Value = item.CelebrityId;
+                ws.Cells[string.Format("B{0}", rowStart)].Value = item.Name;
+                ws.Cells[string.Format("C{0}", rowStart)].Value = item.Height;
+                ws.Cells[string.Format("D{0}", rowStart)].Value = item.Weight;
+                ws.Cells[string.Format("E{0}", rowStart)].Value = item.UrlAvatar;
+                ws.Cells[string.Format("F{0}", rowStart)].Value = item.Description;
+                ws.Cells[string.Format("G{0}", rowStart)].Value = item.Language;
+                rowStart++;
+            }
+
+            //ws.Cells["A:AZ"].AutoFitColumns();
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment: filename=" + "ExcelReport.xlsx");
+            Response.BinaryWrite(pck.GetAsByteArray());
+            Response.End();
         }
 
         // POST: Admin/Celebrities/Create

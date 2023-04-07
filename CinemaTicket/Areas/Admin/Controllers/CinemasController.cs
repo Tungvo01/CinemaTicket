@@ -12,7 +12,7 @@ using CinemaTicket.Models.CinemaModels;
 namespace CinemaTicket.Areas.Admin.Controllers
 {
     // [Authorize(Roles = "admin")]
-    [Authorize]
+    [Authorize(Users = "admin@gmail.com")]
     public class CinemasController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

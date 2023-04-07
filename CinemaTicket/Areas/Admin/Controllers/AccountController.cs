@@ -22,6 +22,12 @@ namespace CinemaTicket.Areas.Admin.Controllers
         {
             return View();
         }
+        public ActionResult DashBoard()
+        {
+            ViewBag.PageView = HttpContext.Application["PageView"].ToString();
+            ViewBag.Online = HttpContext.Application["Online"].ToString();
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

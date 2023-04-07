@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CinemaTicket.Models;
 using CinemaTicket.Models.CinemaModels;
+using OfficeOpenXml;
 
 namespace CinemaTicket.Areas.Admin.Controllers
 {
@@ -45,6 +46,50 @@ namespace CinemaTicket.Areas.Admin.Controllers
             ViewBag.MovieId = new SelectList(db.Movies, "MovieId", "MovieName");
             ViewBag.ShowId = new SelectList(db.Shows, "ShowId", "Movie");
             return View();
+        }
+        public void ExportToExcel()
+        {
+            //List<Reservation> listReservations = db.Reservations.ToList();
+            var reservations = db.Reservations.Include(r => r.Customer).Include(r => r.Seat).Include(r => r.Show).Include(r => r.Show.Cinema).Include(r => r.Show.ShowDay).Include(r => r.Show.ShowTime).Include(r => r.Show.Movie);
+            reservations.ToList();
+            ExcelPackage pck = new ExcelPackage();
+            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
+
+            ws.Cells["A1"].Value = "RESERVATION TABLE WORKSHEET";
+
+            ws.Cells["A2"].Value = "Date";
+            ws.Cells["B2"].Value = string.Format("{0:dd MMMM yyyy} at {0:H:mm tt}", DateTimeOffset.Now);
+
+            ws.Cells["A3"].Value = "Author";
+            ws.Cells["B3"].Value = User.Identity.Name;
+
+
+            ws.Cells["A6"].Value = "Customer";
+            ws.Cells["B6"].Value = "SeatNo";
+            ws.Cells["C6"].Value = "MovieName";
+            ws.Cells["D6"].Value = "Day";
+            ws.Cells["E6"].Value = "Time";
+            ws.Cells["F6"].Value = "Cinema";
+
+
+            int rowStart = 7;
+            foreach (var item in reservations)
+            {
+                ws.Cells[string.Format("A{0}", rowStart)].Value = item.Customer.Name;
+                ws.Cells[string.Format("B{0}", rowStart)].Value = item.Seat.SeatNo;
+                ws.Cells[string.Format("C{0}", rowStart)].Value = item.Show.Movie.MovieName;
+                ws.Cells[string.Format("D{0}", rowStart)].Value = item.Show.ShowDay.Day.ToString("dd/MM/yyyy");
+                ws.Cells[string.Format("E{0}", rowStart)].Value = item.Show.ShowTime.Time;
+                ws.Cells[string.Format("F{0}", rowStart)].Value = item.Show.Cinema.CinemaName;
+                rowStart++;
+            }
+
+            //ws.Cells["A:AZ"].AutoFitColumns();
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment: filename=" + "ExcelReport.xlsx");
+            Response.BinaryWrite(pck.GetAsByteArray());
+            Response.End();
         }
 
         // POST: Admin/Reservations/Create

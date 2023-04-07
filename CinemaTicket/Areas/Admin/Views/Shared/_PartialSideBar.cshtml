@@ -2,8 +2,10 @@
 
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo" href="index.html"><img src="~/Content/assets/img/logoa.png" alt="logo" /></a>
-        <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="~/Content/assets/img/logo_mini.png" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo" href="index.html">
+            <img src="~/Content/assets/img/logo.png" />
+        </a>
+        <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="~/Content/assets/img/menulogo.png" alt="logo" /></a>
     </div>
     <ul class="nav">
 
@@ -20,26 +22,26 @@
         </li>
         <li class="nav-item menu-items">
             @*<a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                    <span class="menu-icon">
-                        <i class="mdi mdi-laptop"></i>
-                    </span>
-                    <span class="menu-title">Basic UI Elements</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="ui-basic">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-                    </ul>
-                </div>*@
+                <span class="menu-icon">
+                    <i class="mdi mdi-laptop"></i>
+                </span>
+                <span class="menu-title">Basic UI Elements</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                </ul>
+            </div>*@
             @*<div class="nav-link">
-                    <span class="menu-icon">
-                        <i class="mdi mdi-laptop"></i>
-                    </span>
-                    <span class="menu-title">@Html.ActionLink("Cinema", "Index", "Cinemas")</span>
+                <span class="menu-icon">
+                    <i class="mdi mdi-laptop"></i>
+                </span>
+                <span class="menu-title">@Html.ActionLink("Cinema", "Index", "Cinemas")</span>
 
-                </div>*@
+            </div>*@
             <a class="nav-link" href="@Url.Action("Index", "Cinemas")">
                 <span class="menu-icon">
                     <i class="mdi mdi-home-variant"></i>
@@ -101,6 +103,14 @@
                     <i class="mdi mdi-ticket-confirmation"></i>
                 </span>
                 <span class="menu-title">Reservation</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="@Url.Action("DashBoard", "Account")">
+                <span class="menu-icon">
+                    <i class="mdi mdi-speedometer"></i>
+                </span>
+                <span class="menu-title">Dashboard</span>
             </a>
         </li>
     </ul>

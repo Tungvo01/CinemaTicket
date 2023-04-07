@@ -9,11 +9,13 @@ using System.Web;
 using System.Web.Mvc;
 using CinemaTicket.Models;
 using CinemaTicket.Models.CinemaModels;
+using OfficeOpenXml;
 using PagedList;
 
 namespace CinemaTicket.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Users = "admin@gmail.com")]
+
     public class MoviesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -57,6 +59,49 @@ namespace CinemaTicket.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             return View(movie);
+        }
+        public void ExportToExcel()
+        {
+
+            List<Movie> listMovies = db.Movies.ToList();
+
+            ExcelPackage pck = new ExcelPackage();
+            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
+
+            ws.Cells["A1"].Value = "MOVIE TABLE WORKSHEET";
+
+            ws.Cells["A2"].Value = "Date";
+            ws.Cells["B2"].Value = string.Format("{0:dd MMMM yyyy} at {0:H:mm tt}", DateTimeOffset.Now);
+
+            ws.Cells["A3"].Value = "Author";
+            ws.Cells["B3"].Value = User.Identity.Name;
+
+
+            ws.Cells["A6"].Value = "MovieId";
+            ws.Cells["B6"].Value = "MovieName";
+            ws.Cells["C6"].Value = "Description";
+            ws.Cells["D6"].Value = "ImageURL";
+            ws.Cells["E6"].Value = "StartDate";
+            ws.Cells["F6"].Value = "EndDate";
+
+            int rowStart = 7;
+            foreach (var item in listMovies)
+            {
+                ws.Cells[string.Format("A{0}", rowStart)].Value = item.MovieId;
+                ws.Cells[string.Format("B{0}", rowStart)].Value = item.MovieName;
+                ws.Cells[string.Format("C{0}", rowStart)].Value = item.Description;
+                ws.Cells[string.Format("D{0}", rowStart)].Value = item.ImageURL;
+                ws.Cells[string.Format("E{0}", rowStart)].Value = item.StartDate.ToString("dd/MM/yyyy");
+                ws.Cells[string.Format("F{0}", rowStart)].Value = item.EndDate.ToString("dd/MM/yyyy");
+                rowStart++;
+            }
+
+            //ws.Cells["A:AZ"].AutoFitColumns();
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment: filename=" + "ExcelReport.xlsx");
+            Response.BinaryWrite(pck.GetAsByteArray());
+            Response.End();
         }
 
         // GET: Admin/Movies/Create

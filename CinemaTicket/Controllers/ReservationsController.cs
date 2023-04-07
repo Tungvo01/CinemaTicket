@@ -157,17 +157,9 @@ namespace CinemaTicket.Controllers
 
             return View(book);
         }
-        public ActionResult ngon()
-        {
-            //lughe vao db
-            //
-            //savechanes
-            
+       
 
-            return View();
-        }
-
-        public ActionResult kongon()
+        public ActionResult fail()
         {
 
             return View();
@@ -268,18 +260,18 @@ namespace CinemaTicket.Controllers
                     //If executed payment failed then we will show payment failure message to user  
                     if (executedPayment.state.ToLower() != "approved")
                     {
-                        return View("kongon");
+                        return View("fail");
                     }
                 }
             }
             catch (Exception ex)
             {
-                return View("kongon");
+                return View("fail");
             }
             //on successful payment, show success page to user.  
           
            
-            return View("ngon");
+             return Redirect("~/Home/index");
         }
         private PayPal.Api.Payment payment;
         private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)

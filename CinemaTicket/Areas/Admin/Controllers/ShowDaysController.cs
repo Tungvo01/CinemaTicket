@@ -11,7 +11,8 @@ using CinemaTicket.Models.CinemaModels;
 
 namespace CinemaTicket.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Users = "admin@gmail.com")]
+
     public class ShowDaysController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

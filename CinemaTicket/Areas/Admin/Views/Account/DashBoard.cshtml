@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "DashBoard";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-header">
+    <h4 class="page-title"> Dashboard </h4>
+</div>
+
+<div class="row">
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                        @*<h6 class="text-muted font-weight-normal text-center">View</h6>*@
+                        <h6 class="mb-0 text-muted font-weight-normal">VIEW</h6>
+                        <div class="d-flex d-sm-block d-md-flex align-items-center">
+                            <h2 class="mb-0">@ViewBag.PageView</h2>
+                            @*<p class="text-success ml-2 mb-0 font-weight-medium">+8.3%</p>*@
+                        </div>
+
+                    </div>
+                    <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                        <i class="icon-lg mdi mdi-eye text-primary ml-auto"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                        <h6 class="mb-0 text-muted font-weight-normal">ONLINE</h6>
+                        <div class="d-flex d-sm-block d-md-flex align-items-center">
+                            <h2 class="mb-0">@ViewBag.Online</h2>
+                            @*<p class="text-success ml-2 mb-0 font-weight-medium">+8.3%</p>*@
+                        </div>
+                        @*<h6 class="text-muted font-weight-normal">Online</h6>*@
+                    </div>
+                    <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                        <i class="icon-lg mdi mdi-access-point text-success ml-auto"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
