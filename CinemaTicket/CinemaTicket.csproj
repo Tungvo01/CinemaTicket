@@ -1321,6 +1321,8 @@
     <Content Include="Areas\Admin\Views\Shows\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Shows\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Account\DashBoard.cshtml" />
+    <None Include="Properties\PublishProfiles\tungvo-001-site1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\tungvo-001-site1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1398,6 +1400,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\AppUsers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

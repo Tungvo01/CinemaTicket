@@ -169,7 +169,7 @@ namespace CinemaTicket.Controllers
 
             return View();
         }
-
+        [Authorize]
         public ActionResult PaymentWithPaypal(string datveJson, string price, string seats,string Cancel = null)
         {
             if(datveJson != null)
@@ -191,7 +191,7 @@ namespace CinemaTicket.Controllers
 
                 content = content.Replace("{{CustomerName}}", User.Identity.Name);
                 content = content.Replace("{{MovieName}}", datve.MovieName);
-                content = content.Replace("{{Seats}}", datve.Seat);
+                content = content.Replace("{{Seats}}", seats);
                 content = content.Replace("{{Cinema}}", datve.Location);
                 content = content.Replace("{{Day}}", datve.Day);
                 content = content.Replace("{{Time}}", datve.Time);

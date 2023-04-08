@@ -1,5 +1,6 @@
 ﻿using CinemaTicket.Identity;
 using CinemaTicket.Models;
+using CinemaTicket.Models.CinemaModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -16,6 +17,11 @@ namespace CinemaTicket.Areas.Admin.Controllers
 {
     public class AccountController : Controller
     {
+        private ApplicationDbContext db;
+        public AccountController()
+        {
+            db = new ApplicationDbContext();
+        }
         private ApplicationUserManager _userManager;
         // GET: Admin/Account
         public ActionResult Index()
@@ -26,7 +32,10 @@ namespace CinemaTicket.Areas.Admin.Controllers
         {
             ViewBag.PageView = HttpContext.Application["PageView"].ToString();
             ViewBag.Online = HttpContext.Application["Online"].ToString();
+            List<Reservation> listReser = db.Reservations.ToList();
+            ViewBag.Reser = listReser.Count;
             return View();
+
         }
 
         [HttpPost]
